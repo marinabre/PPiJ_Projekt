@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cbff8c53a229473ba22fae21b3f44b11" Name="Diagram1">
+        <EntityTypeShape EntityType="Guess_WhereModel.Game" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Guess_WhereModel.Image" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Guess_WhereModel.User" Width="1.5" PointX="7.75" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="Guess_WhereModel.FK_Game_Image1" ManuallyRouted="false" />
+        <AssociationConnector Association="Guess_WhereModel.FK_Game_Image2" ManuallyRouted="false" />
+        <AssociationConnector Association="Guess_WhereModel.FK_Game_Image3" ManuallyRouted="false" />
+        <AssociationConnector Association="Guess_WhereModel.FK_Game_Image4" ManuallyRouted="false" />
+        <AssociationConnector Association="Guess_WhereModel.FK_Game_Image5" ManuallyRouted="false" />
+        <AssociationConnector Association="Guess_WhereModel.FK_Game_Image6" ManuallyRouted="false" />
+        <AssociationConnector Association="Guess_WhereModel.FK_Game_Image7" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Guess_WhereModel.LeaderBoard" Width="1.5" PointX="5.5" PointY="3.5" />
+        <EntityTypeShape EntityType="Guess_WhereModel.SavedGames" Width="1.5" PointX="7.5" PointY="5.75" />
+        <AssociationConnector Association="Guess_WhereModel.FK_LeaderBoard_Game" />
+        <AssociationConnector Association="Guess_WhereModel.FK_SavedGames_Game" />
+        <AssociationConnector Association="Guess_WhereModel.FK_LeaderBoard_User" />
+        <AssociationConnector Association="Guess_WhereModel.FK_SavedGames_User" />
+        <EntityTypeShape EntityType="Guess_WhereModel.RegisteredUser" Width="1.5" PointX="10" PointY="2.75" />
+        <AssociationConnector Association="Guess_WhereModel.FK_RegisteredUser_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

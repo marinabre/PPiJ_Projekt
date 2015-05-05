@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -153,6 +155,39 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\bazapodataka.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bazapodataka.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\bazapodataka.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bazapodataka.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\bazapodataka.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bazapodataka.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\Game.cs">
+      <DependentUpon>bazapodataka.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\Image.cs">
+      <DependentUpon>bazapodataka.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\LeaderBoard.cs">
+      <DependentUpon>bazapodataka.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\RegisteredUser.cs">
+      <DependentUpon>bazapodataka.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\SavedGames.cs">
+      <DependentUpon>bazapodataka.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\User.cs">
+      <DependentUpon>bazapodataka.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -178,6 +213,23 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="App_Data\bazapodataka.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>bazapodataka.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="App_Data\bazapodataka.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>bazapodataka.edmx</DependentUpon>
+      <LastGenOutput>bazapodataka.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_Data\bazapodataka.edmx.diagram">
+      <DependentUpon>bazapodataka.edmx</DependentUpon>
+    </Content>
+    <Content Include="App_Data\bazapodataka.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>bazapodataka.edmx</DependentUpon>
+      <LastGenOutput>bazapodataka.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -226,9 +278,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -236,6 +286,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
