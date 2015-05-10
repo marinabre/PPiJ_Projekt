@@ -1,0 +1,66 @@
+﻿@model GuessWhere.Models.Image
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Image</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hint1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hint1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hint2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hint2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.info)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.info)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Xcoordinate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Xcoordinate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ycoordinate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ycoordinate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDimage }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,74 @@
+﻿@model GuessWhere.Models.Game
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Game</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Image.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image1.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image1.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image2.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image2.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image3.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image3.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image4.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image4.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image5.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image5.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image6.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image6.image)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDgame }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

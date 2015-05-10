@@ -50,6 +50,6 @@ C:\Users\Ivyclover\Documents\GitHub\PPiJ_Projekt\GuessWhere\bin\Microsoft.Owin.S
 C:\Users\Ivyclover\Documents\GitHub\PPiJ_Projekt\GuessWhere\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Ivyclover\Documents\GitHub\PPiJ_Projekt\GuessWhere\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Ivyclover\Documents\GitHub\PPiJ_Projekt\GuessWhere\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Ivyclover\Documents\GitHub\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.csprojResolveAssemblyReference.cache
 C:\Users\Ivyclover\Documents\GitHub\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.dll
 C:\Users\Ivyclover\Documents\GitHub\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.pdb
+C:\Users\Ivyclover\Documents\GitHub\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.csprojResolveAssemblyReference.cache
