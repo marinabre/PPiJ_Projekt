@@ -25,13 +25,13 @@ namespace GuessWhere.Models
             this.Game6 = new HashSet<Game>();
         }
     
-        public int IDimage { get; set; }
+        public int IDImage { get; set; }
         public string image { get; set; }
         public string hint1 { get; set; }
         public string hint2 { get; set; }
         public string info { get; set; }
-        public decimal Xcoordinate { get; set; }
-        public decimal Ycoordinate { get; set; }
+        public decimal latitude { get; set; }
+        public decimal longitude { get; set; }
     
         public virtual ICollection<Game> Game { get; set; }
         public virtual ICollection<Game> Game1 { get; set; }

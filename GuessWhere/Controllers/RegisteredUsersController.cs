@@ -39,7 +39,7 @@ namespace GuessWhere.Controllers
         // GET: RegisteredUsers/Create
         public ActionResult Create()
         {
-            ViewBag.IDuser = new SelectList(db.User, "IDuser", "username");
+            ViewBag.IDUser = new SelectList(db.User, "IDuser", "username");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace GuessWhere.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDreguser,IDuser,avatar,password,coins,highscore,IDbestgame")] RegisteredUser registeredUser)
+        public ActionResult Create([Bind(Include = "IDRegUser,IDUser,avatar,password,coins,highscore,IDBestGame")] RegisteredUser registeredUser)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace GuessWhere.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDuser = new SelectList(db.User, "IDuser", "username", registeredUser.IDuser);
+            ViewBag.IDUser = new SelectList(db.User, "IDuser", "username", registeredUser.IDUser);
             return View(registeredUser);
         }
 
@@ -73,7 +73,7 @@ namespace GuessWhere.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDuser = new SelectList(db.User, "IDuser", "username", registeredUser.IDuser);
+            ViewBag.IDUser = new SelectList(db.User, "IDuser", "username", registeredUser.IDUser);
             return View(registeredUser);
         }
 
@@ -82,7 +82,7 @@ namespace GuessWhere.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDreguser,IDuser,avatar,password,coins,highscore,IDbestgame")] RegisteredUser registeredUser)
+        public ActionResult Edit([Bind(Include = "IDRegUser,IDUser,avatar,password,coins,highscore,IDBestGame")] RegisteredUser registeredUser)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace GuessWhere.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDuser = new SelectList(db.User, "IDuser", "username", registeredUser.IDuser);
+            ViewBag.IDUser = new SelectList(db.User, "IDuser", "username", registeredUser.IDUser);
             return View(registeredUser);
         }
 

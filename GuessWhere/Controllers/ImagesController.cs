@@ -46,7 +46,7 @@ namespace GuessWhere.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDimage,image,hint1,hint2,info,Xcoordinate,Ycoordinate")] Image image)
+        public ActionResult Create([Bind(Include = "IDImage,image,hint1,hint2,info,latitude,longitude")] Image image)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace GuessWhere.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDimage,image,hint1,hint2,info,Xcoordinate,Ycoordinate")] Image image)
+        public ActionResult Edit([Bind(Include = "IDImage,image,hint1,hint2,info,latitude,longitude")] Image image)
         {
             if (ModelState.IsValid)
             {
