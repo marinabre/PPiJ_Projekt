@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Game control interface</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -59,9 +59,9 @@
             @Html.DisplayFor(modelItem => item.Image6.image)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDgame }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDgame }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDgame })
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDGame }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDGame }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDGame })
         </td>
     </tr>
 }

@@ -18,7 +18,6 @@ namespace GuessWhere.Models
         {
             this.LeaderBoard = new HashSet<LeaderBoard>();
             this.RegisteredUser = new HashSet<RegisteredUser>();
-            this.SavedGames = new HashSet<SavedGames>();
         }
     
         public int IDuser { get; set; }
@@ -26,6 +25,5 @@ namespace GuessWhere.Models
     
         public virtual ICollection<LeaderBoard> LeaderBoard { get; set; }
         public virtual ICollection<RegisteredUser> RegisteredUser { get; set; }
-        public virtual ICollection<SavedGames> SavedGames { get; set; }
     }
 }

@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Leaderboard control interface</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.score)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Game.IDgame)
+            @Html.DisplayNameFor(model => model.Game.IDGame)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.User.username)
@@ -35,15 +35,15 @@
             @Html.DisplayFor(modelItem => item.score)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Game.IDgame)
+            @Html.DisplayFor(modelItem => item.Game.IDGame)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.User.username)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDboard }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDboard }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDboard })
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDBoard }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDBoard }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDBoard })
         </td>
     </tr>
 }

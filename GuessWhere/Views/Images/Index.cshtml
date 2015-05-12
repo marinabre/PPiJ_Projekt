@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Image control interface</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -24,10 +24,10 @@
             @Html.DisplayNameFor(model => model.info)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Xcoordinate)
+            @Html.DisplayNameFor(model => model.latitude)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ycoordinate)
+            @Html.DisplayNameFor(model => model.longitude)
         </th>
         <th></th>
     </tr>
@@ -47,15 +47,15 @@
             @Html.DisplayFor(modelItem => item.info)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Xcoordinate)
+            @Html.DisplayFor(modelItem => item.latitude)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Ycoordinate)
+            @Html.DisplayFor(modelItem => item.longitude)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDimage }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDimage }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDimage })
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDImage }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDImage }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDImage })
         </td>
     </tr>
 }

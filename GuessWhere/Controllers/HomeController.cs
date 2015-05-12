@@ -15,16 +15,21 @@ namespace GuessWhere.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Guess where.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "How to contact us.";
 
             return View();
         }
+        public ActionResult Play()
+        {
+            return View();
+        }
+
     }
 }

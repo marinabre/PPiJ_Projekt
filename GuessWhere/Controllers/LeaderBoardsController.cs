@@ -39,8 +39,8 @@ namespace GuessWhere.Controllers
         // GET: LeaderBoards/Create
         public ActionResult Create()
         {
-            ViewBag.IDgame = new SelectList(db.Game, "IDgame", "IDgame");
-            ViewBag.IDuser = new SelectList(db.User, "IDuser", "username");
+            ViewBag.IDGame = new SelectList(db.Game, "IDGame", "IDGame");
+            ViewBag.IDUser = new SelectList(db.User, "IDuser", "username");
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace GuessWhere.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDboard,IDuser,IDgame,username,score")] LeaderBoard leaderBoard)
+        public ActionResult Create([Bind(Include = "IDBoard,IDUser,IDGame,username,score")] LeaderBoard leaderBoard)
         {
             if (ModelState.IsValid)
             {
@@ -58,8 +58,8 @@ namespace GuessWhere.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDgame = new SelectList(db.Game, "IDgame", "IDgame", leaderBoard.IDgame);
-            ViewBag.IDuser = new SelectList(db.User, "IDuser", "username", leaderBoard.IDuser);
+            ViewBag.IDGame = new SelectList(db.Game, "IDGame", "IDGame", leaderBoard.IDGame);
+            ViewBag.IDUser = new SelectList(db.User, "IDuser", "username", leaderBoard.IDUser);
             return View(leaderBoard);
         }
 
@@ -75,8 +75,8 @@ namespace GuessWhere.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDgame = new SelectList(db.Game, "IDgame", "IDgame", leaderBoard.IDgame);
-            ViewBag.IDuser = new SelectList(db.User, "IDuser", "username", leaderBoard.IDuser);
+            ViewBag.IDGame = new SelectList(db.Game, "IDGame", "IDGame", leaderBoard.IDGame);
+            ViewBag.IDUser = new SelectList(db.User, "IDuser", "username", leaderBoard.IDUser);
             return View(leaderBoard);
         }
 
@@ -85,7 +85,7 @@ namespace GuessWhere.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDboard,IDuser,IDgame,username,score")] LeaderBoard leaderBoard)
+        public ActionResult Edit([Bind(Include = "IDBoard,IDUser,IDGame,username,score")] LeaderBoard leaderBoard)
         {
             if (ModelState.IsValid)
             {
@@ -93,8 +93,8 @@ namespace GuessWhere.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDgame = new SelectList(db.Game, "IDgame", "IDgame", leaderBoard.IDgame);
-            ViewBag.IDuser = new SelectList(db.User, "IDuser", "username", leaderBoard.IDuser);
+            ViewBag.IDGame = new SelectList(db.Game, "IDGame", "IDGame", leaderBoard.IDGame);
+            ViewBag.IDUser = new SelectList(db.User, "IDuser", "username", leaderBoard.IDUser);
             return View(leaderBoard);
         }
 
