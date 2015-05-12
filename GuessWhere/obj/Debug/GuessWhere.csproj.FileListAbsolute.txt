@@ -107,3 +107,4 @@ C:\Users\Leon\Documents\GitHub\PPiJ_Projekt\GuessWhere\bin\Microsoft.Owin.Securi
 C:\Users\Leon\Documents\GitHub\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.dll
 C:\Users\Leon\Documents\GitHub\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.pdb
 C:\Users\Leon\Documents\GitHub\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.csprojResolveAssemblyReference.cache
+C:\Users\Ivyclover\Documents\GitHub\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.csprojResolveAssemblyReference.cache
