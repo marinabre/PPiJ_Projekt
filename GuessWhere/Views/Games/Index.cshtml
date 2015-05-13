@@ -1,0 +1,69 @@
+﻿@model IEnumerable<GuessWhere.Models.Game>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Game control interface</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Image.image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image1.image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image2.image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image3.image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image4.image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image5.image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image6.image)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image.image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image1.image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image2.image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image3.image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image4.image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image5.image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image6.image)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDGame }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDGame }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDGame })
+        </td>
+    </tr>
+}
+
+</table>

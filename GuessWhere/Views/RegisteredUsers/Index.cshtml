@@ -1,0 +1,69 @@
+﻿@model IEnumerable<GuessWhere.Models.RegisteredUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.avatar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.coins)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.highscore)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDbestgame)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.username)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.avatar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.coins)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.highscore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDbestgame)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.username)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDreguser }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDreguser }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDreguser })
+        </td>
+    </tr>
+}
+
+</table>

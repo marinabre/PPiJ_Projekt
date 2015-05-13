@@ -1,0 +1,66 @@
+﻿@model GuessWhere.Models.RegisteredUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RegisteredUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.avatar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.avatar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.coins)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.coins)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.highscore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.highscore)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDBestGame)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDBestGame)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDRegUser }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
