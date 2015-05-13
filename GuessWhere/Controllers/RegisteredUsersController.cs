@@ -57,7 +57,7 @@ namespace GuessWhere.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDUser = new SelectList(db.User, "IDuser", "username", registeredUser.IDUser);
+            ViewBag.IDUser = new SelectList(db.User, "IDuser", "username", registeredUser.IDuser);
             return View(registeredUser);
         }
 
@@ -73,7 +73,7 @@ namespace GuessWhere.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDUser = new SelectList(db.User, "IDuser", "username", registeredUser.IDUser);
+            ViewBag.IDUser = new SelectList(db.User, "IDuser", "username", registeredUser.IDuser);
             return View(registeredUser);
         }
 
@@ -90,7 +90,7 @@ namespace GuessWhere.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDUser = new SelectList(db.User, "IDuser", "username", registeredUser.IDUser);
+            ViewBag.IDUser = new SelectList(db.User, "IDuser", "username", registeredUser.IDuser);
             return View(registeredUser);
         }
 
