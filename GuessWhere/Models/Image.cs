@@ -25,8 +25,8 @@ namespace GuessWhere.Models
             this.Game6 = new HashSet<Game>();
         }
     
-        public int IDimage { get; set; }
-        public byte[] image1 { get; set; }
+        public int IDImage { get; set; }
+        public byte[] image { get; set; }
         public string hint1 { get; set; }
         public string hint2 { get; set; }
         public string info { get; set; }

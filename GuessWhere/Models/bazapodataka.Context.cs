@@ -28,8 +28,8 @@ namespace GuessWhere.Models
         public virtual DbSet<Game> Game { get; set; }
         public virtual DbSet<LeaderBoard> LeaderBoard { get; set; }
         public virtual DbSet<User> User { get; set; }
-        public virtual DbSet<SavedGames> SavedGames { get; set; }
         public virtual DbSet<Image> Image { get; set; }
         public virtual DbSet<RegisteredUser> RegisteredUser { get; set; }
+        public virtual DbSet<SavedGames> SavedGames { get; set; }
     }
 }

@@ -14,11 +14,6 @@ namespace GuessWhere.Models
     
     public partial class RegisteredUser
     {
-        public RegisteredUser()
-        {
-            this.SavedGames = new HashSet<SavedGames>();
-        }
-    
         public int IDreguser { get; set; }
         public int IDuser { get; set; }
         public byte[] avatar { get; set; }
@@ -29,6 +24,5 @@ namespace GuessWhere.Models
         public string email { get; set; }
     
         public virtual User User { get; set; }
-        public virtual ICollection<SavedGames> SavedGames { get; set; }
     }
 }

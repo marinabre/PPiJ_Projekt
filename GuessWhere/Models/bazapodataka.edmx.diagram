@@ -10,10 +10,7 @@
         <EntityTypeShape EntityType="Guess_WhereModel.User" Width="1.5" PointX="3" PointY="7.875" />
         <AssociationConnector Association="Guess_WhereModel.FK_LeaderBoard_Game" />
         <AssociationConnector Association="Guess_WhereModel.FK_LeaderBoard_User" />
-        <EntityTypeShape EntityType="Guess_WhereModel.SavedGames" Width="1.5" PointX="7.5" PointY="4.875" />
-        <AssociationConnector Association="Guess_WhereModel.FK_SavedGames_Game" />
         <EntityTypeShape EntityType="Guess_WhereModel.Image" Width="1.5" PointX="0.75" PointY="2" />
-        <EntityTypeShape EntityType="Guess_WhereModel.RegisteredUser" Width="1.5" PointX="5.25" PointY="7.25" />
         <AssociationConnector Association="Guess_WhereModel.FK_Game_Image1" />
         <AssociationConnector Association="Guess_WhereModel.FK_Game_Image2" />
         <AssociationConnector Association="Guess_WhereModel.FK_Game_Image3" />
@@ -21,8 +18,11 @@
         <AssociationConnector Association="Guess_WhereModel.FK_Game_Image5" />
         <AssociationConnector Association="Guess_WhereModel.FK_Game_Image6" />
         <AssociationConnector Association="Guess_WhereModel.FK_Game_Image7" />
+        <EntityTypeShape EntityType="Guess_WhereModel.RegisteredUser" Width="1.5" PointX="8.25" PointY="7.5" />
         <AssociationConnector Association="Guess_WhereModel.FK_RegisteredUser_User" />
-        <AssociationConnector Association="Guess_WhereModel.FK_SavedGames_RegisteredUser" />
+        <EntityTypeShape EntityType="Guess_WhereModel.SavedGames" Width="1.5" PointX="8" PointY="4.75" />
+        <AssociationConnector Association="Guess_WhereModel.FK_SavedGames_Game" />
+        <AssociationConnector Association="Guess_WhereModel.FK_SavedGames_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
