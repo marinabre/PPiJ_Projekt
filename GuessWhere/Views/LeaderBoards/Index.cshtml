@@ -1,44 +1,46 @@
 ﻿@model IEnumerable<GuessWhere.Models.LeaderBoard>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Leaderboard";
 }
 
-<h2>Leaderboard control interface</h2>
+<h2 style="color: cornflowerblue">Leaderboard</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<head>
+    <style>
+        table#leaderboardTable{
+            width: 100%;
+            align-content: center;
+            background: rgba(212, 231, 255, 0.60);
+            text-align: center;
+            color: black;
+        }
+    </style>
+</head>
+
+<table class="table" id="leaderboardTable">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.username)
+            Score
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.score)
+            Username
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Game.IDGame)
+            Game played
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.username)
-        </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.username)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.score)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Game.IDGame)
+            @Html.DisplayFor(modelItem => item.User.username)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User.username)
+            @Html.DisplayFor(modelItem => item.Game.IDGame)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IDBoard }) |
