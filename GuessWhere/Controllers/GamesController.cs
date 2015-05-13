@@ -21,6 +21,11 @@ namespace GuessWhere.Controllers
             return View(game.ToList());
         }
 
+        public ActionResult Play()
+        {
+            return View();
+        }
+
         // GET: Games/Details/5
         public ActionResult Details(int? id)
         {

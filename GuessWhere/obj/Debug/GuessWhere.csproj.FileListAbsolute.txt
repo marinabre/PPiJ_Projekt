@@ -107,6 +107,7 @@ C:\Users\Leon\Documents\GitHub\PPiJ_Projekt\GuessWhere\bin\Microsoft.Owin.Securi
 C:\Users\Leon\Documents\GitHub\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.dll
 C:\Users\Leon\Documents\GitHub\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.pdb
 C:\Users\Leon\Documents\GitHub\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
 C:\Users\Zubo\Documents\GitHub\PPIJ\PPiJ_Projekt\GuessWhere\bin\GuessWhere.dll.config
 C:\Users\Zubo\Documents\GitHub\PPIJ\PPiJ_Projekt\GuessWhere\bin\GuessWhere.dll
 C:\Users\Zubo\Documents\GitHub\PPIJ\PPiJ_Projekt\GuessWhere\bin\GuessWhere.pdb
@@ -162,3 +163,6 @@ C:\Users\Zubo\Documents\GitHub\PPIJ\PPiJ_Projekt\GuessWhere\bin\Microsoft.Owin.S
 C:\Users\Zubo\Documents\GitHub\PPIJ\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.csprojResolveAssemblyReference.cache
 C:\Users\Zubo\Documents\GitHub\PPIJ\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.dll
 C:\Users\Zubo\Documents\GitHub\PPIJ\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.pdb
+=======
+C:\Users\Ivyclover\Documents\GitHub\PPiJ_Projekt\GuessWhere\obj\Debug\GuessWhere.csprojResolveAssemblyReference.cache
+>>>>>>> a80170b2e38ad127f65153ccbd6173fa482a295c
