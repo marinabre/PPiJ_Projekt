@@ -295,11 +295,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Images\Create.cshtml" />
-    <Content Include="Views\Images\Delete.cshtml" />
-    <Content Include="Views\Images\Details.cshtml" />
-    <Content Include="Views\Images\Edit.cshtml" />
-    <Content Include="Views\Images\Index.cshtml" />
     <Content Include="Views\Games\Create.cshtml" />
     <Content Include="Views\Games\Delete.cshtml" />
     <Content Include="Views\Games\Details.cshtml" />
@@ -310,12 +305,17 @@
     <Content Include="Views\LeaderBoards\Details.cshtml" />
     <Content Include="Views\LeaderBoards\Edit.cshtml" />
     <Content Include="Views\LeaderBoards\Index.cshtml" />
+    <Content Include="Views\Games\Play.cshtml" />
+    <Content Include="Views\Images\Create.cshtml" />
+    <Content Include="Views\Images\Delete.cshtml" />
+    <Content Include="Views\Images\Details.cshtml" />
+    <Content Include="Views\Images\Edit.cshtml" />
+    <Content Include="Views\Images\Index.cshtml" />
     <Content Include="Views\RegisteredUsers\Create.cshtml" />
     <Content Include="Views\RegisteredUsers\Delete.cshtml" />
     <Content Include="Views\RegisteredUsers\Details.cshtml" />
     <Content Include="Views\RegisteredUsers\Edit.cshtml" />
     <Content Include="Views\RegisteredUsers\Index.cshtml" />
-    <Content Include="Views\Games\Play.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
