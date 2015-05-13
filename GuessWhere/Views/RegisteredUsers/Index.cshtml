@@ -24,7 +24,7 @@
             @Html.DisplayNameFor(model => model.highscore)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IDBestGame)
+            @Html.DisplayNameFor(model => model.IDbestgame)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.User.username)
@@ -47,15 +47,15 @@
             @Html.DisplayFor(modelItem => item.highscore)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IDBestGame)
+            @Html.DisplayFor(modelItem => item.IDbestgame)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.User.username)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDRegUser }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDRegUser }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDRegUser })
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDreguser }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDreguser }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDreguser })
         </td>
     </tr>
 }
