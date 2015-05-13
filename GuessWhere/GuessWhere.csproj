@@ -244,6 +244,7 @@
       <DependentUpon>bazapodataka.edmx</DependentUpon>
       <LastGenOutput>bazapodataka.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\Web player build.unity3d" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
