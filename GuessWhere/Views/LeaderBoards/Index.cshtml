@@ -10,7 +10,6 @@
     <style>
         table#leaderboardTable{
             width: 100%;
-            align-content: center;
             background: rgba(212, 231, 255, 0.60);
             text-align: center;
             color: black;
@@ -31,7 +30,10 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@{
+    var top10 = Model.OrderBy(m => m.score).Take(10);
+}
+@foreach (var item in top10) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.score)
