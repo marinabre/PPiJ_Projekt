@@ -25,8 +25,19 @@ namespace GuessWhere.Controllers
         {
             Random rnd = new Random();
             int gameID = rnd.Next(1, db.Game.Max(g => g.IDgame) + 1);  //random.Next range is [first,last>
+            Game game = db.Game.Find(gameID);
+            List<Image> images = new List<Image>();
 
-            return View(db.Game.Find(gameID));
+            //after selecting a game, we pull all the images from that game, so we can manipulate with them in the view
+            images.Add(game.Image); 
+            images.Add(game.Image1);
+            images.Add(game.Image2);
+            images.Add(game.Image3);
+            images.Add(game.Image4);
+            images.Add(game.Image5);
+            images.Add(game.Image6);
+
+            return View(images);
         }
 
         // GET: Games/Details/5
@@ -160,5 +171,16 @@ namespace GuessWhere.Controllers
             }
             base.Dispose(disposing);
         }
+        public void Show(int id)
+        {
+            byte[] image = db.Image.Where(x => x.IDimage == id).SingleOrDefault().image;
+            Response.Buffer = true;
+            Response.Clear();
+            Response.ContentType = "image";
+            Response.BinaryWrite(image);
+            Response.End();
+        }
+
+
     }
 }

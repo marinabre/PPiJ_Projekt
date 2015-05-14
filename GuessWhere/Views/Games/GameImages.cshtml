@@ -1,16 +1,33 @@
-﻿@model IEnumerable<GuessWhere.Models.Game>
+﻿@model List<GuessWhere.Models.Image>
 
-    @{
-        ViewBag.Title = "Game";
+@{
+    ViewBag.Title = "Game";
+}
+
+<h2></h2>
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@Url.Action("Show", "Images", new { id = item.IDimage })" alt="image" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="padding-top:20px"><a class="btn btn-default" onclick="@Html.DisplayFor(modelItem => item.hint1)">HINT</a></p>
+                <p style="padding-top:20px"><a class="btn btn-default" onclick="@Html.DisplayFor(modelItem => item.hint2)">HINT</a></p>
+            </td>
+        </tr>
+        @*@while(/*the pin isn't pinned on the planet or one of the GIVEUP or NEXT isn't clicked*/)
+        {/*wait*/
+        }*@
     }
 
-    <h2></h2>
-<div class = "column">
-    @Html.DisplayNameFor(model => model.Image.image)
 
-</div>
+</table>
 
 
 
-<p style="padding-top: 20px"><a class="btn btn-primary btn-lg" >&nbsp; &nbsp; &nbsp; &nbsp;GIVE UP &nbsp; &nbsp; &nbsp;</a></p>
-<p style="padding-top: 20px"><a class="btn btn-primary btn-lg" >&nbsp; &nbsp; &nbsp; &nbsp;NEXT IMAGE &nbsp; &nbsp; &nbsp;</a></p>
+<p style="padding-top: 20px"><a class="btn btn-primary btn-lg">&nbsp; &nbsp; &nbsp; &nbsp;GIVE UP &nbsp; &nbsp; &nbsp;</a></p>
+<p style="padding-top: 20px"><a class="btn btn-primary btn-lg">&nbsp; &nbsp; &nbsp; &nbsp;NEXT IMAGE &nbsp; &nbsp; &nbsp;</a></p>
