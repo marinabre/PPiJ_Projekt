@@ -4,64 +4,52 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Game control interface</h2>
+<h2 style="color: cornflowerblue">Games</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Image.image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image1.image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image2.image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image3.image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image4.image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image5.image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image6.image)
-        </th>
-        <th></th>
-    </tr>
+
+<head>
+    <style>
+        table#gamesTable {
+            width: 100%;
+            background: rgba(212, 231, 255, 0.80);
+            text-align: center;
+            color: black;
+        }
+    </style>
+</head>
+
+<table class="table" id="gamesTable">
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Image.image)
+            <img src="@Url.Action("Show", "Images", new { id = item.IDimg1 })" alt="image" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image1.image)
+            <img src="@Url.Action("Show", "Images", new { id = item.IDimg2 })" alt="image" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image2.image)
+            <img src="@Url.Action("Show", "Images", new { id = item.IDimg3 })" alt="image" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image3.image)
+            <img src="@Url.Action("Show", "Images", new { id = item.IDimg4 })" alt="image" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image4.image)
+            <img src="@Url.Action("Show", "Images", new { id = item.IDimg5 })" alt="image" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image5.image)
+            <img src="@Url.Action("Show", "Images", new { id = item.IDimg6 })" alt="image" />
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Image6.image)
+            <img src="@Url.Action("Show", "Images", new { id = item.IDimg7 })" alt="image" />
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDGame }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDGame }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDGame })
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDgame }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDgame }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDgame })
         </td>
     </tr>
 }
