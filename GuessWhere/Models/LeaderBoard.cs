@@ -14,9 +14,9 @@ namespace GuessWhere.Models
     
     public partial class LeaderBoard
     {
-        public int IDBoard { get; set; }
-        public int IDUser { get; set; }
-        public int IDGame { get; set; }
+        public int IDboard { get; set; }
+        public int IDuser { get; set; }
+        public int IDgame { get; set; }
         public string username { get; set; }
         public long score { get; set; }
     

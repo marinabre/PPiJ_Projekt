@@ -20,14 +20,14 @@ namespace GuessWhere.Models
             this.SavedGames = new HashSet<SavedGames>();
         }
     
-        public int IDGame { get; set; }
-        public int IDImg1 { get; set; }
-        public int IDImg2 { get; set; }
-        public int IDImg3 { get; set; }
-        public int IDImg4 { get; set; }
-        public int IDImg5 { get; set; }
-        public int IDImg6 { get; set; }
-        public int IDImg7 { get; set; }
+        public int IDgame { get; set; }
+        public int IDimg1 { get; set; }
+        public int IDimg2 { get; set; }
+        public int IDimg3 { get; set; }
+        public int IDimg4 { get; set; }
+        public int IDimg5 { get; set; }
+        public int IDimg6 { get; set; }
+        public int IDimg7 { get; set; }
     
         public virtual ICollection<LeaderBoard> LeaderBoard { get; set; }
         public virtual Image Image { get; set; }

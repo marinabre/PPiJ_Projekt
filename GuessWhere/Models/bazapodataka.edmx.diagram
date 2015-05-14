@@ -18,11 +18,11 @@
         <AssociationConnector Association="Guess_WhereModel.FK_Game_Image5" />
         <AssociationConnector Association="Guess_WhereModel.FK_Game_Image6" />
         <AssociationConnector Association="Guess_WhereModel.FK_Game_Image7" />
-        <EntityTypeShape EntityType="Guess_WhereModel.RegisteredUser" Width="1.5" PointX="8.25" PointY="7.5" />
-        <AssociationConnector Association="Guess_WhereModel.FK_RegisteredUser_User" />
         <EntityTypeShape EntityType="Guess_WhereModel.SavedGames" Width="1.5" PointX="8" PointY="4.75" />
         <AssociationConnector Association="Guess_WhereModel.FK_SavedGames_Game" />
         <AssociationConnector Association="Guess_WhereModel.FK_SavedGames_User" />
+        <EntityTypeShape EntityType="Guess_WhereModel.RegisteredUser" Width="1.5" PointX="7.125" PointY="7.75" />
+        <AssociationConnector Association="Guess_WhereModel.FK_RegisteredUser_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
