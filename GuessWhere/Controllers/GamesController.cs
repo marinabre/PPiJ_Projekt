@@ -47,13 +47,13 @@ namespace GuessWhere.Controllers
         // GET: Games/Create
         public ActionResult Create()
         {
-            ViewBag.IDImg1 = new SelectList(db.Image, "IDImage", "image");
-            ViewBag.IDImg2 = new SelectList(db.Image, "IDImage", "image");
-            ViewBag.IDImg3 = new SelectList(db.Image, "IDImage", "image");
-            ViewBag.IDImg4 = new SelectList(db.Image, "IDImage", "image");
-            ViewBag.IDImg5 = new SelectList(db.Image, "IDImage", "image");
-            ViewBag.IDImg6 = new SelectList(db.Image, "IDImage", "image");
-            ViewBag.IDImg7 = new SelectList(db.Image, "IDImage", "image");
+            ViewBag.IDimg1 = new SelectList(db.Image, "IDimage", "image");
+            ViewBag.IDimg2 = new SelectList(db.Image, "IDimage", "image");
+            ViewBag.IDimg3 = new SelectList(db.Image, "IDimage", "image");
+            ViewBag.IDimg4 = new SelectList(db.Image, "IDimage", "image");
+            ViewBag.IDimg5 = new SelectList(db.Image, "IDimage", "image");
+            ViewBag.IDimg6 = new SelectList(db.Image, "IDimage", "image");
+            ViewBag.IDimg7 = new SelectList(db.Image, "IDimage", "image");
             return View();
         }
 
@@ -62,7 +62,7 @@ namespace GuessWhere.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDgame,IDImg1,IDImg2,IDImg3,IDImg4,IDImg5,IDImg6,IDImg7")] Game game)
+        public ActionResult Create([Bind(Include = "IDgame,IDimg1,IDimg2,IDimg3,IDimg4,IDimg5,IDimg6,IDimg7")] Game game)
         {
             if (ModelState.IsValid)
             {
@@ -71,13 +71,13 @@ namespace GuessWhere.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDImg1 = new SelectList(db.Image, "IDImage", "image", game.IDimg1);
-            ViewBag.IDImg2 = new SelectList(db.Image, "IDImage", "image", game.IDimg2);
-            ViewBag.IDImg3 = new SelectList(db.Image, "IDImage", "image", game.IDimg3);
-            ViewBag.IDImg4 = new SelectList(db.Image, "IDImage", "image", game.IDimg4);
-            ViewBag.IDImg5 = new SelectList(db.Image, "IDImage", "image", game.IDimg5);
-            ViewBag.IDImg6 = new SelectList(db.Image, "IDImage", "image", game.IDimg6);
-            ViewBag.IDImg7 = new SelectList(db.Image, "IDImage", "image", game.IDimg7);
+            ViewBag.IDimg1 = new SelectList(db.Image, "IDimage", "image", game.IDimg1);
+            ViewBag.IDimg2 = new SelectList(db.Image, "IDimage", "image", game.IDimg2);
+            ViewBag.IDimg3 = new SelectList(db.Image, "IDimage", "image", game.IDimg3);
+            ViewBag.IDimg4 = new SelectList(db.Image, "IDimage", "image", game.IDimg4);
+            ViewBag.IDimg5 = new SelectList(db.Image, "IDimage", "image", game.IDimg5);
+            ViewBag.IDimg6 = new SelectList(db.Image, "IDimage", "image", game.IDimg6);
+            ViewBag.IDimg7 = new SelectList(db.Image, "IDimage", "image", game.IDimg7);
             return View(game);
         }
 
@@ -93,13 +93,13 @@ namespace GuessWhere.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDImg1 = new SelectList(db.Image, "IDImage", "image", game.IDimg1);
-            ViewBag.IDImg2 = new SelectList(db.Image, "IDImage", "image", game.IDimg2);
-            ViewBag.IDImg3 = new SelectList(db.Image, "IDImage", "image", game.IDimg3);
-            ViewBag.IDImg4 = new SelectList(db.Image, "IDImage", "image", game.IDimg4);
-            ViewBag.IDImg5 = new SelectList(db.Image, "IDImage", "image", game.IDimg5);
-            ViewBag.IDImg6 = new SelectList(db.Image, "IDImage", "image", game.IDimg6);
-            ViewBag.IDImg7 = new SelectList(db.Image, "IDImage", "image", game.IDimg7);
+            ViewBag.IDimg1 = new SelectList(db.Image, "IDimage", "image", game.IDimg1);
+            ViewBag.IDimg2 = new SelectList(db.Image, "IDimage", "image", game.IDimg2);
+            ViewBag.IDimg3 = new SelectList(db.Image, "IDimage", "image", game.IDimg3);
+            ViewBag.IDimg4 = new SelectList(db.Image, "IDimage", "image", game.IDimg4);
+            ViewBag.IDimg5 = new SelectList(db.Image, "IDimage", "image", game.IDimg5);
+            ViewBag.IDimg6 = new SelectList(db.Image, "IDimage", "image", game.IDimg6);
+            ViewBag.IDimg7 = new SelectList(db.Image, "IDimage", "image", game.IDimg7);
             return View(game);
         }
 
@@ -108,7 +108,7 @@ namespace GuessWhere.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDgame,IDImg1,IDImg2,IDImg3,IDImg4,IDImg5,IDImg6,IDImg7")] Game game)
+        public ActionResult Edit([Bind(Include = "IDgame,IDimg1,IDimg2,IDimg3,IDimg4,IDimg5,IDimg6,IDimg7")] Game game)
         {
             if (ModelState.IsValid)
             {
@@ -116,13 +116,13 @@ namespace GuessWhere.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDImg1 = new SelectList(db.Image, "IDImage", "image", game.IDimg1);
-            ViewBag.IDImg2 = new SelectList(db.Image, "IDImage", "image", game.IDimg2);
-            ViewBag.IDImg3 = new SelectList(db.Image, "IDImage", "image", game.IDimg3);
-            ViewBag.IDImg4 = new SelectList(db.Image, "IDImage", "image", game.IDimg4);
-            ViewBag.IDImg5 = new SelectList(db.Image, "IDImage", "image", game.IDimg5);
-            ViewBag.IDImg6 = new SelectList(db.Image, "IDImage", "image", game.IDimg6);
-            ViewBag.IDImg7 = new SelectList(db.Image, "IDImage", "image", game.IDimg7);
+            ViewBag.IDimg1 = new SelectList(db.Image, "IDimage", "image", game.IDimg1);
+            ViewBag.IDimg2 = new SelectList(db.Image, "IDimage", "image", game.IDimg2);
+            ViewBag.IDimg3 = new SelectList(db.Image, "IDimage", "image", game.IDimg3);
+            ViewBag.IDimg4 = new SelectList(db.Image, "IDimage", "image", game.IDimg4);
+            ViewBag.IDimg5 = new SelectList(db.Image, "IDimage", "image", game.IDimg5);
+            ViewBag.IDimg6 = new SelectList(db.Image, "IDimage", "image", game.IDimg6);
+            ViewBag.IDimg7 = new SelectList(db.Image, "IDimage", "image", game.IDimg7);
             return View(game);
         }
 

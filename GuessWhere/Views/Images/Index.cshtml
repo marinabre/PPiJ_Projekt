@@ -1,19 +1,32 @@
 ﻿@model IEnumerable<GuessWhere.Models.Image>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "List of images";
 }
 
-<h2>Index</h2>
+<h2 style="color: cornflowerblue">Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+
+
+<head>
+    <style>
+        table#leaderboardTable {
+            width: 100%;
+            align-content: center;
+            background: rgb(230, 242, 239);
+            text-align: center;
+            color: black;
+        }
+    </style>
+</head>
+<table class="table" style="color: black" id="leaderboardTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.image)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.hint1)
         </th>
@@ -32,32 +45,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hint1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.hint2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.info)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.latitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.longitude)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDImage }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDImage }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDImage })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@Url.Action("Show", "Images", new { id = item.IDimage })" alt="image" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hint1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hint2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.info)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.longitude)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IDimage }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IDimage }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDimage })
+            </td>
+        </tr>
+    }
 
 </table>
