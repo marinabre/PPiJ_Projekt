@@ -30,7 +30,10 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@{
+    var top10 = Model.OrderBy(m => m.score).Take(10);
+}
+@foreach (var item in top10) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.score)
