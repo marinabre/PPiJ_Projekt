@@ -103,10 +103,17 @@ namespace GuessWhere.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDimage,image,hint1,hint2,info,latitude,longitude")] Image image)
+        public ActionResult Edit(HttpPostedFileBase upload, [Bind(Include = "IDimage,image,hint1,hint2,info,latitude,longitude")] Image image)
         {
             if (ModelState.IsValid)
             {
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    {
+                        image.image = reader.ReadBytes(upload.ContentLength);
+                    }
+                }
                 db.Entry(image).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

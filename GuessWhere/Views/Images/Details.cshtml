@@ -4,57 +4,56 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 style="color:cornflowerblue">Details</h2>
 
 <div>
-    <h4>Image</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.image)
+        <dt style="color:cornflowerblue">
+            Image
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.image)
+            <img src="@Url.Action("Show", "Images", new { id = Model.IDimage })" alt="image" />
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.hint1)
+        <dt style="color:cornflowerblue">
+            First hint
         </dt>
 
-        <dd>
+        <dd style="color:aliceblue">
             @Html.DisplayFor(model => model.hint1)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.hint2)
+        <dt style="color:cornflowerblue">
+            Second hint
         </dt>
 
-        <dd>
+        <dd style="color:aliceblue">
             @Html.DisplayFor(model => model.hint2)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.info)
+        <dt style="color:cornflowerblue">
+            Description
         </dt>
 
-        <dd>
+        <dd style="color:aliceblue">
             @Html.DisplayFor(model => model.info)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.latitude)
+        <dt style="color:cornflowerblue">
+            Latitude
         </dt>
 
-        <dd>
+        <dd style="color:aliceblue">
             @Html.DisplayFor(model => model.latitude)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.longitude)
+        <dt style="color:cornflowerblue">
+            Longitude
         </dt>
 
-        <dd>
+        <dd style="color:aliceblue">
             @Html.DisplayFor(model => model.longitude)
         </dd>
 

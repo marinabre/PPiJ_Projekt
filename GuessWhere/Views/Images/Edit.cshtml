@@ -1,32 +1,33 @@
 ﻿@model GuessWhere.Models.Image
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Image editing";
 }
 
-<h2>Edit</h2>
-
+<h2 style="color: cornflowerblue">Edit</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Image</h4>
+    <div class="form-horizontal" style="color: cornflowerblue">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IDimage)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Image", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                <img src="@Url.Action("Show", "Images", new { id = Model.IDimage })" alt="image" />
+                <div class="col-md-10">
+                    <input type="file" id="image" name="upload" />
+                    @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.hint1, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("First hint", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.hint1, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.hint1, "", new { @class = "text-danger" })
@@ -34,7 +35,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.hint2, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Second hint", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.hint2, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.hint2, "", new { @class = "text-danger" })
@@ -42,7 +43,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.info, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Description", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.info, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.info, "", new { @class = "text-danger" })
@@ -50,7 +51,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.latitude, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Latitude", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.latitude, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.latitude, "", new { @class = "text-danger" })
@@ -58,7 +59,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.longitude, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Longitude", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.longitude, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.longitude, "", new { @class = "text-danger" })
