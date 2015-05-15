@@ -13,6 +13,7 @@ namespace GuessWhere.Controllers
     [Authorize]
     public class ManageController : Controller
     {
+        Guess_WhereEntities1 context;
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -232,6 +233,15 @@ namespace GuessWhere.Controllers
             if (result.Succeeded)
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+                // spremi promjene također i u bazu podataka
+                context = new Guess_WhereEntities1();
+
+                RegisteredUser u = context.RegisteredUser.First(x => x.email == user.Email);
+                u.password = model.NewPassword.GetHashCode().ToString();
+
+                context.SaveChanges();
+
                 if (user != null)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -261,6 +271,15 @@ namespace GuessWhere.Controllers
                 if (result.Succeeded)
                 {
                     var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+                    // spremi promjene također i u bazu podataka
+                    context = new Guess_WhereEntities1();
+
+                    RegisteredUser u = context.RegisteredUser.First(x => x.email == user.Email);
+                    u.password = model.NewPassword.GetHashCode().ToString();
+
+                    context.SaveChanges();
+
                     if (user != null)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
