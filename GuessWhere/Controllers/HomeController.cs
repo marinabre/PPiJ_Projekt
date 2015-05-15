@@ -26,10 +26,5 @@ namespace GuessWhere.Controllers
 
             return View();
         }
-        //public ActionResult Play()
-        //{
-        //    return View();
-        //}
-
     }
 }
