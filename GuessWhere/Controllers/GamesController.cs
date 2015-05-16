@@ -82,13 +82,13 @@ namespace GuessWhere.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDimg1 = new SelectList(db.Image, "IDimage", "image", game.IDimg1);
-            ViewBag.IDimg2 = new SelectList(db.Image, "IDimage", "image", game.IDimg2);
-            ViewBag.IDimg3 = new SelectList(db.Image, "IDimage", "image", game.IDimg3);
-            ViewBag.IDimg4 = new SelectList(db.Image, "IDimage", "image", game.IDimg4);
-            ViewBag.IDimg5 = new SelectList(db.Image, "IDimage", "image", game.IDimg5);
-            ViewBag.IDimg6 = new SelectList(db.Image, "IDimage", "image", game.IDimg6);
-            ViewBag.IDimg7 = new SelectList(db.Image, "IDimage", "image", game.IDimg7);
+            ViewBag.IDimg1 = new SelectList(db.Image, "IDimage", "name", game.IDimg1);
+            ViewBag.IDimg2 = new SelectList(db.Image, "IDimage", "name", game.IDimg2);
+            ViewBag.IDimg3 = new SelectList(db.Image, "IDimage", "name", game.IDimg3);
+            ViewBag.IDimg4 = new SelectList(db.Image, "IDimage", "name", game.IDimg4);
+            ViewBag.IDimg5 = new SelectList(db.Image, "IDimage", "name", game.IDimg5);
+            ViewBag.IDimg6 = new SelectList(db.Image, "IDimage", "name", game.IDimg6);
+            ViewBag.IDimg7 = new SelectList(db.Image, "IDimage", "name", game.IDimg7);
             return View(game);
         }
 
@@ -135,13 +135,13 @@ namespace GuessWhere.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDimg1 = new SelectList(db.Image, "IDimage", "image", game.IDimg1);
-            ViewBag.IDimg2 = new SelectList(db.Image, "IDimage", "image", game.IDimg2);
-            ViewBag.IDimg3 = new SelectList(db.Image, "IDimage", "image", game.IDimg3);
-            ViewBag.IDimg4 = new SelectList(db.Image, "IDimage", "image", game.IDimg4);
-            ViewBag.IDimg5 = new SelectList(db.Image, "IDimage", "image", game.IDimg5);
-            ViewBag.IDimg6 = new SelectList(db.Image, "IDimage", "image", game.IDimg6);
-            ViewBag.IDimg7 = new SelectList(db.Image, "IDimage", "image", game.IDimg7);
+            ViewBag.IDimg1 = new SelectList(db.Image, "IDimage", "name", game.IDimg1);
+            ViewBag.IDimg2 = new SelectList(db.Image, "IDimage", "name", game.IDimg2);
+            ViewBag.IDimg3 = new SelectList(db.Image, "IDimage", "name", game.IDimg3);
+            ViewBag.IDimg4 = new SelectList(db.Image, "IDimage", "name", game.IDimg4);
+            ViewBag.IDimg5 = new SelectList(db.Image, "IDimage", "name", game.IDimg5);
+            ViewBag.IDimg6 = new SelectList(db.Image, "IDimage", "name", game.IDimg6);
+            ViewBag.IDimg7 = new SelectList(db.Image, "IDimage", "name", game.IDimg7);
             return View(game);
         }
 
