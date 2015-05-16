@@ -26,6 +26,9 @@
         <dd>
             <img src="@Url.Action("Show", "Images", new { id = Model.IDimg1 })" alt="image" />
         </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Image.name)
+        </dd>
         <hr />
         <dt>
             Image 2:
@@ -33,6 +36,9 @@
 
         <dd>
             <img src="@Url.Action("Show", "Images", new { id = Model.IDimg2 })" alt="image" />
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Image1.name)
         </dd>
         <hr />
         <dt>
@@ -42,6 +48,9 @@
         <dd>
             <img src="@Url.Action("Show", "Images", new { id = Model.IDimg3 })" alt="image" />
         </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Image2.name)
+        </dd>
         <hr />
         <dt>
             Image 4:
@@ -49,6 +58,9 @@
 
         <dd>
             <img src="@Url.Action("Show", "Images", new { id = Model.IDimg4 })" alt="image" />
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Image3.name)
         </dd>
         <hr />
         <dt>
@@ -58,6 +70,9 @@
         <dd>
             <img src="@Url.Action("Show", "Images", new { id = Model.IDimg5 })" alt="image" />
         </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Image4.name)
+        </dd>
         <hr />
         <dt>
             Image 6:
@@ -66,6 +81,9 @@
         <dd>
             <img src="@Url.Action("Show", "Images", new { id = Model.IDimg6 })" alt="image" />
         </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Image5.name)
+        </dd>
         <hr />
         <dt>
             Image 7:
@@ -73,6 +91,9 @@
 
         <dd>
             <img src="@Url.Action("Show", "Images", new { id = Model.IDimg7 })" alt="image" />
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Image6.name)
         </dd>
 
     </dl>
