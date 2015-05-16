@@ -4,66 +4,75 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2 style="color: cornflowerblue">Details</h2>
 
-<div>
-    <h4>Game</h4>
+<head>
+    <style>
+        div#centralPart {
+            width: 100%;
+            background: rgba(212, 231, 255, 0.80);
+            color: black;
+        }
+    </style>
+</head>
+
+<div id="centralPart">
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Image.image)
+            Image 1:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image.image)
+            <img src="@Url.Action("Show", "Images", new { id = Model.IDimg1 })" alt="image" />
         </dd>
-
+        <hr />
         <dt>
-            @Html.DisplayNameFor(model => model.Image1.image)
+            Image 2:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image1.image)
+            <img src="@Url.Action("Show", "Images", new { id = Model.IDimg2 })" alt="image" />
         </dd>
-
+        <hr />
         <dt>
-            @Html.DisplayNameFor(model => model.Image2.image)
+            Image 3:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image2.image)
+            <img src="@Url.Action("Show", "Images", new { id = Model.IDimg3 })" alt="image" />
         </dd>
-
+        <hr />
         <dt>
-            @Html.DisplayNameFor(model => model.Image3.image)
+            Image 4:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image3.image)
+            <img src="@Url.Action("Show", "Images", new { id = Model.IDimg4 })" alt="image" />
         </dd>
-
+        <hr />
         <dt>
-            @Html.DisplayNameFor(model => model.Image4.image)
+            Image 5:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image4.image)
+            <img src="@Url.Action("Show", "Images", new { id = Model.IDimg5 })" alt="image" />
         </dd>
-
+        <hr />
         <dt>
-            @Html.DisplayNameFor(model => model.Image5.image)
+            Image 6:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image5.image)
+            <img src="@Url.Action("Show", "Images", new { id = Model.IDimg6 })" alt="image" />
         </dd>
-
+        <hr />
         <dt>
-            @Html.DisplayNameFor(model => model.Image6.image)
+            Image 7:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image6.image)
+            <img src="@Url.Action("Show", "Images", new { id = Model.IDimg7 })" alt="image" />
         </dd>
 
     </dl>
