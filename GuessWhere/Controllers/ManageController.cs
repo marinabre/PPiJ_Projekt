@@ -13,6 +13,7 @@ namespace GuessWhere.Controllers
     [Authorize]
     public class ManageController : Controller
     {
+        Guess_WhereEntities1 context;
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -66,6 +67,7 @@ namespace GuessWhere.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
+                //Avatar = context.RegisteredUser.Find(userId).avatar, //how to get the avatar of the current user?
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
@@ -232,6 +234,15 @@ namespace GuessWhere.Controllers
             if (result.Succeeded)
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+                // spremi promjene također i u bazu podataka
+                context = new Guess_WhereEntities1();
+
+                RegisteredUser u = context.RegisteredUser.First(x => x.email == user.Email);
+                u.password = model.NewPassword.GetHashCode().ToString();
+
+                context.SaveChanges();
+
                 if (user != null)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -261,6 +272,15 @@ namespace GuessWhere.Controllers
                 if (result.Succeeded)
                 {
                     var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+                    // spremi promjene također i u bazu podataka
+                    context = new Guess_WhereEntities1();
+
+                    RegisteredUser u = context.RegisteredUser.First(x => x.email == user.Email);
+                    u.password = model.NewPassword.GetHashCode().ToString();
+
+                    context.SaveChanges();
+
                     if (user != null)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
@@ -380,6 +400,15 @@ namespace GuessWhere.Controllers
             RemoveLoginSuccess,
             RemovePhoneSuccess,
             Error
+        }
+
+        public void Show(byte[] avatar)
+        {
+            Response.Buffer = true;
+            Response.Clear();
+            Response.ContentType = "image";
+            Response.BinaryWrite(avatar);
+            Response.End();
         }
 
         #endregion

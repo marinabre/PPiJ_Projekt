@@ -1,10 +1,9 @@
 ﻿@model GuessWhere.Models.Game
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create game";
 }
 
-<h2>Create</h2>
 
 <head>
     <style>
@@ -16,15 +15,15 @@
     </style>
 </head>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal" id="centralPart">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.IDimg1, "IDimg1", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Image 1:</label>
             <div class="col-md-10">
                 @Html.DropDownList("IDimg1", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IDimg1, "", new { @class = "text-danger" })
@@ -32,7 +31,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IDimg2, "IDimg2", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Image 2:</label>
             <div class="col-md-10">
                 @Html.DropDownList("IDimg2", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IDimg2, "", new { @class = "text-danger" })
@@ -40,7 +39,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IDimg3, "IDimg3", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Image 3:</label>
             <div class="col-md-10">
                 @Html.DropDownList("IDimg3", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IDimg3, "", new { @class = "text-danger" })
@@ -48,7 +47,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IDimg4, "IDimg4", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Image 4:</label>
             <div class="col-md-10">
                 @Html.DropDownList("IDimg4", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IDimg4, "", new { @class = "text-danger" })
@@ -56,7 +55,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IDimg5, "IDimg5", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Image 5:</label>
             <div class="col-md-10">
                 @Html.DropDownList("IDimg5", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IDimg5, "", new { @class = "text-danger" })
@@ -64,7 +63,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IDimg6, "IDimg6", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Image 6:</label>
             <div class="col-md-10">
                 @Html.DropDownList("IDimg6", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IDimg6, "", new { @class = "text-danger" })
@@ -72,7 +71,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IDimg7, "IDimg7", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Image 7:</label>
             <div class="col-md-10">
                 @Html.DropDownList("IDimg7", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.IDimg7, "", new { @class = "text-danger" })

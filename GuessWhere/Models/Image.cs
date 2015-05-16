@@ -28,6 +28,7 @@ using System.ComponentModel.DataAnnotations;
     
         public int IDimage { get; set; }
         public byte[] image { get; set; }
+        public string name { get; set; }
         public string hint1 { get; set; }
         public string hint2 { get; set; }
         public string info { get; set; }

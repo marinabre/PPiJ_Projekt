@@ -49,9 +49,8 @@ namespace GuessWhere.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Username")]
+        public string Username { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,6 +63,9 @@ namespace GuessWhere.Models
 
     public class RegisterViewModel
     {
+        [Display(Name = "Avatar")]
+        public byte[] Avatar { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

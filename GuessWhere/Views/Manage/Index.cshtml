@@ -3,15 +3,29 @@
     ViewBag.Title = "Manage";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2 style="color: lightsteelblue">@ViewBag.Title</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
+
+
+
 <div>
-    <h4>Change your account settings</h4>
-    <hr />
+    <h4 style="color: ButtonShadow">Change your account settings</h4>
+    <hr align="left" width="42%" />
     <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
+        @*<dt style="color: ButtonShadow">Avatar:</dt>
+        <dd style="color: ButtonShadow">
+            [
+            @if (Model.Avatar != null)
+            {
+                <img src="@Url.Action("Show", "Manage", new { avatar = Model.Avatar })" alt="image" />
+            }
+            ]
+
+        </dd>*@
+
+        <dt style="color: ButtonShadow">Password:</dt>
+        <dd style="color: ButtonShadow">
             [
             @if (Model.HasPassword)
             {
@@ -23,20 +37,20 @@
             }
             ]
         </dd>
-        <dt>External Logins:</dt>
-        <dd>
+        <dt style="color: ButtonShadow">External Logins:</dt>
+        <dd style="color: ButtonShadow">
             @Model.Logins.Count [
             @Html.ActionLink("Manage", "ManageLogins") ]
         </dd>
         @*
             Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-             
+
              See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
                 for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-             
+
              Uncomment the following block after you have set up two-factor authentication
         *@
-        @*  
+        @*
             <dt>Phone Number:</dt>
             <dd>
                 @(Model.PhoneNumber ?? "None") [
@@ -53,11 +67,12 @@
                 ]
             </dd>
         *@
-        <dt>Two-Factor Authentication:</dt>
-        <dd>
+        <dt style="color: ButtonShadow">Two-Factor Authentication:</dt>
+        <dd style="color: ButtonShadow">
             <p>
-                There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication.
+                There are no two-factor authentication
+                <br />providers configured. @*See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                    for details on setting up this ASP.NET application to support two-factor authentication.*@
             </p>
             @*@if (Model.TwoFactor)
                 {
@@ -82,3 +97,4 @@
         </dd>
     </dl>
 </div>
+

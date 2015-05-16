@@ -17,7 +17,7 @@
             background: rgba(212, 231, 255, 0.80);
             text-align: center;
             color: black;
-        }
+        }        
     </style>
 </head>
 
@@ -26,25 +26,25 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <img src="@Url.Action("Show", "Images", new { id = item.IDimg1 })" alt="image" />
+            <img src="@Url.Action("Show", "Images", new { id = item.IDimg1 })" alt="image" style="height:auto; width:auto; max-width:150px; max-height:150px;" />
         </td>
         <td>
-            <img src="@Url.Action("Show", "Images", new { id = item.IDimg2 })" alt="image" />
+            <img src="@Url.Action("Show", "Images", new { id = item.IDimg2 })" alt="image" style="height:auto; width:auto; max-width:150px; max-height:150px;" />
         </td>
         <td>
-            <img src="@Url.Action("Show", "Images", new { id = item.IDimg3 })" alt="image" />
+            <img src="@Url.Action("Show", "Images", new { id = item.IDimg3 })" alt="image" style="height:auto; width:auto; max-width:150px; max-height:150px;" />
         </td>
         <td>
-            <img src="@Url.Action("Show", "Images", new { id = item.IDimg4 })" alt="image" />
+            <img src="@Url.Action("Show", "Images", new { id = item.IDimg4 })" alt="image" style="height:auto; width:auto; max-width:150px; max-height:150px;" />
         </td>
         <td>
-            <img src="@Url.Action("Show", "Images", new { id = item.IDimg5 })" alt="image" />
+            <img src="@Url.Action("Show", "Images", new { id = item.IDimg5 })" alt="image" style="height:auto; width:auto; max-width:150px; max-height:150px;" />
         </td>
         <td>
-            <img src="@Url.Action("Show", "Images", new { id = item.IDimg6 })" alt="image" />
+            <img src="@Url.Action("Show", "Images", new { id = item.IDimg6 })" alt="image" style="height:auto; width:auto; max-width:150px; max-height:150px;" />
         </td>
         <td>
-            <img src="@Url.Action("Show", "Images", new { id = item.IDimg7 })" alt="image" />
+            <img src="@Url.Action("Show", "Images", new { id = item.IDimg7 })" alt="image" style="height:auto; width:auto; max-width:150px; max-height:150px;" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IDgame }) |
