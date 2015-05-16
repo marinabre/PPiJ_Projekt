@@ -2,147 +2,223 @@
     ViewBag.Title = "Playing the game";
 }
 
-<div class="jumbotron text-center">
-    <h1>Guess Where</h1>
-</div>
 
 <div class="content">
-    <div id="unityPlayer">
-        <div class="missing">
-            <a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
-                <img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
-            </a>
+    <div class="row">
+        <div class="col-md-4">
+            <img id="the-image" src="" style="max-height:300px; max-width:300px" />
         </div>
-        <div class="broken">
-            <a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now! Restart your browser after install.">
-                <img alt="Unity Web Player. Install now! Restart your browser after install." src="http://webplayer.unity3d.com/installation/getunityrestart.png" width="193" height="63" />
-            </a>
+        <div id="controls-container" class="col-md2">
+            <button id="nextImgButton" class="btn btn-danger">Begin game</button>
+            <button id="hint-button" class="btn btn-success">Hint</button>
+        </div>
+        <div id="text-space" class="col-md-6">
+        </div>
+    </div>
+    <div class="row">
+        <div id="game-container" class="col-lg-5">
+            <div id="unityPlayer">
+                <div class="missing">
+                    <a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
+                        <img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
+                    </a>
+                </div>
+                <div class="broken">
+                    <a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now! Restart your browser after install.">
+                        <img alt="Unity Web Player. Install now! Restart your browser after install." src="http://webplayer.unity3d.com/installation/getunityrestart.png" width="193" height="63" />
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<script type='text/javascript' src='https://ssl-webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/jquery.min.js'>
+</script>
+<script type="text/javascript">
+	<!--
+	var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
+	if (document.location.protocol == 'https:')
+		unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
+	document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
+    var currentImg = 0;
+    
+    @{ var mod = (List<int>)Model; }
+    
+    var imgId = [];
 
-<div id="unity-container">
-    <script type='text/javascript' src='https://ssl-webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/jquery.min.js'></script>
-    <script type="text/javascript">
-		<!--
-		var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
-		if (document.location.protocol == 'https:')
-			unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
-		document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
-		-->
-    </script>
-    <script type="text/javascript">
-		<!--
-			var config = {
-				width: 960,
-				height: 600,
-				params: { enableDebugging:"0" }
+    @foreach(var id in mod)
+    {
+        @:imgId.push("@id");
+    }
 
-			};
-			var u = new UnityObject2(config);
+    $("#nextImgButton").click(function()
+    {
+        if (currentImg == 0) { EnableGame(); }
+        SetImg(imgId[currentImg]);
+        GetCoords(imgId[currentImg]);
 
-			jQuery(function() {
+        $(this).html("Next image");
+        if (currentImg > 6)
+        {
+            $(this).hide();
+        }
 
-				var $missingScreen = jQuery("#unityPlayer").find(".missing");
-				var $brokenScreen = jQuery("#unityPlayer").find(".broken");
-				$missingScreen.hide();
-				$brokenScreen.hide();
+        currentImg++;
+    });
 
-				u.observeProgress(function (progress) {
-					switch(progress.pluginStatus) {
-						case "broken":
-							$brokenScreen.find("a").click(function (e) {
-								e.stopPropagation();
-								e.preventDefault();
-								u.installPlugin();
-								return false;
-							});
-							$brokenScreen.show();
-						break;
-						case "missing":
-							$missingScreen.find("a").click(function (e) {
-								e.stopPropagation();
-								e.preventDefault();
-								u.installPlugin();
-								return false;
-							});
-							$missingScreen.show();
-						break;
-						case "installed":
-							$missingScreen.remove();
-						break;
-						case "first":
-						break;
-					}
-				});
-				u.initPlugin(jQuery("#unityPlayer")[0], "http://localhost:2106/Content/Web player build.unity3d");
+    function GetCoords(imgID)
+    {
+        var url = '@Url.Action("GetCoordinates", "Games")' + '?imgID=' + imgID;
+        $.get(url, NextImg);
+    }
+
+    function updateImg(data)
+    {
+        $("#the-image").attr("src", "data:image/gif;base64," + data);
+    }
+
+    function SetImg(imgID)
+    {
+        var url = '@Url.Action("GetImage", "Games")' + '?imgID=' + imgID;
+        $.get(url,updateImg);
+    }
+
+    function EnableGame()
+    {
+        @*Enables playing game*@
+        u.getUnity().SendMessage("Game", "EnableGame", null);
+    }
+
+    function GetResult(result)
+    {
+        @*Called by unity*@
+    }
+
+    function NextImg(coords)
+    {
+        @*Gives unity coordinates of image*@
+        alert(coords);
+        u.getUnity().SendMessage("Game", "NewImage", coords);
+    }
+	-->
+</script>
+<script type="text/javascript">
+	<!--
+		var config = {
+			width: 960,
+			height: 600,
+			params: { enableDebugging:"0" }
+
+		};
+		var u = new UnityObject2(config);
+
+		jQuery(function() {
+
+			var $missingScreen = jQuery("#unityPlayer").find(".missing");
+			var $brokenScreen = jQuery("#unityPlayer").find(".broken");
+			$missingScreen.hide();
+			$brokenScreen.hide();
+
+			u.observeProgress(function (progress) {
+				switch(progress.pluginStatus) {
+					case "broken":
+						$brokenScreen.find("a").click(function (e) {
+							e.stopPropagation();
+							e.preventDefault();
+							u.installPlugin();
+							return false;
+						});
+						$brokenScreen.show();
+					break;
+					case "missing":
+						$missingScreen.find("a").click(function (e) {
+							e.stopPropagation();
+							e.preventDefault();
+							u.installPlugin();
+							return false;
+						});
+						$missingScreen.show();
+					break;
+					case "installed":
+						$missingScreen.remove();
+					break;
+					case "first":
+					break;
+				}
 			});
-		-->
-    </script>
-    <style type="text/css">
-        <!--
-        body {
-            font-family: Helvetica, Verdana, Arial, sans-serif;
-            background-color: white;
-            color: black;
-            text-align: center;
+			u.initPlugin(jQuery("#unityPlayer")[0], "http://localhost:2106/Content/Web player build.unity3d");
+		});
+	-->
+</script>
+<style type="text/css">
+    <!--
+    body {
+        font-family: Helvetica, Verdana, Arial, sans-serif;
+        background-color: white;
+        color: black;
+        text-align: center;
+    }
+
+    a:link, a:visited {
+        color: #000;
+    }
+
+    a:active, a:hover {
+        color: #666;
+    }
+
+    p.header {
+        font-size: small;
+    }
+
+        p.header span {
+            font-weight: bold;
         }
 
-        a:link, a:visited {
-            color: #000;
-        }
+    p.footer {
+        font-size: x-small;
+    }
 
-        a:active, a:hover {
-            color: #666;
-        }
+    div.content {
+        margin: auto;
+        width: 960px;
+    }
 
-        p.header {
-            font-size: small;
-        }
+    div.broken,
+    div.missing {
+        margin: auto;
+        position: relative;
+        top: 50%;
+        width: 193px;
+    }
 
-            p.header span {
-                font-weight: bold;
-            }
-
-        p.footer {
-            font-size: x-small;
-        }
-
-        div.content {
-            margin: auto;
-            width: 960px;
-        }
-
-        div.broken,
-        div.missing {
-            margin: auto;
+        div.broken a,
+        div.missing a {
+            height: 63px;
             position: relative;
-            top: 50%;
-            width: 193px;
+            top: -31px;
         }
 
-            div.broken a,
-            div.missing a {
-                height: 63px;
-                position: relative;
-                top: -31px;
-            }
-
-            div.broken img,
-            div.missing img {
-                border-width: 0px;
-            }
-
-        div.broken {
-            display: none;
+        div.broken img,
+        div.missing img {
+            border-width: 0px;
         }
 
-        div#unityPlayer {
-            cursor: default;
-            height: 600px;
-            width: 960px;
-        }
-        -->
-    </style>
-</div>
+    div.broken {
+        display: none;
+    }
+
+    div#unityPlayer {
+        cursor: default;
+        height: 600px;
+        width: 960px;
+    }
+    .row
+    {
+        margin-top: 20px;
+        min-height: 350px;
+        min-width: 500px;
+    }
+    -->
+</style>
