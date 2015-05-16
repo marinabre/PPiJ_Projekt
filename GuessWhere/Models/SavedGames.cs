@@ -20,7 +20,7 @@ namespace GuessWhere.Models
         public long score { get; set; }
         public System.DateTime datePlayed { get; set; }
     
-        public virtual Game Game { get; set; }
         public virtual User User { get; set; }
+        public virtual Game Game { get; set; }
     }
 }

@@ -29,7 +29,6 @@ namespace GuessWhere.Models
         public int IDimg6 { get; set; }
         public int IDimg7 { get; set; }
     
-        public virtual ICollection<LeaderBoard> LeaderBoard { get; set; }
         public virtual Image Image { get; set; }
         public virtual Image Image1 { get; set; }
         public virtual Image Image2 { get; set; }
@@ -37,6 +36,7 @@ namespace GuessWhere.Models
         public virtual Image Image4 { get; set; }
         public virtual Image Image5 { get; set; }
         public virtual Image Image6 { get; set; }
+        public virtual ICollection<LeaderBoard> LeaderBoard { get; set; }
         public virtual ICollection<SavedGames> SavedGames { get; set; }
     }
 }

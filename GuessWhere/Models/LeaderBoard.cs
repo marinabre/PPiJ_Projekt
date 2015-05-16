@@ -20,7 +20,7 @@ namespace GuessWhere.Models
         public string username { get; set; }
         public long score { get; set; }
     
-        public virtual Game Game { get; set; }
         public virtual User User { get; set; }
+        public virtual Game Game { get; set; }
     }
 }
