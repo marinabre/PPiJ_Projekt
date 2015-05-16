@@ -210,6 +210,16 @@ namespace GuessWhere.Controllers
             return Content(hintNum == 1 ? img.hint1 : img.hint2);
         }
 
+        [HttpGet]
+        public ActionResult GetInfo(int? imgID)
+        {
+            if (imgID == null) { return null; }
+
+            var img = db.Image.Find(imgID);
+
+            return Content(img.info);
+        }
+
         public ActionResult GetCoordinates(int? imgID)
         {
             if (imgID == null) { return null; }
