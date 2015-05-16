@@ -12,7 +12,9 @@
             <button id="nextImgButton" class="btn btn-danger">Begin game</button>
             <button id="hint-button" class="btn btn-success">Hint</button>
         </div>
-        <div id="text-space" class="col-md-6">
+        <div id="hint-container" class="col-md-6">
+            <div id="hint1-container"></div>
+            <div id="hint2-container"></div>
         </div>
     </div>
     <div class="row">
@@ -41,7 +43,9 @@
 	if (document.location.protocol == 'https:')
 		unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
 	document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
-    var currentImg = 0;
+    
+	var hint = 0;
+	var currentImg = -1;
     
     @{ var mod = (List<int>)Model; }
     
@@ -54,18 +58,29 @@
 
     $("#nextImgButton").click(function()
     {
+        currentImg++;
+        hint = 1;
         if (currentImg == 0) { EnableGame(); }
         SetImg(imgId[currentImg]);
         GetCoords(imgId[currentImg]);
+
+        $("#hint1-container").html("");
+        $("#hint2-container").html("");
 
         $(this).html("Next image");
         if (currentImg > 6)
         {
             $(this).hide();
         }
-
-        currentImg++;
     });
+
+    $("#hint-button").click(function()
+    {
+        if(hint <= 2)
+        {
+            GetHint(imgId[currentImg]);
+        }
+    })
 
     function GetCoords(imgID)
     {
@@ -99,6 +114,18 @@
     {
         @*Gives unity coordinates of image*@
         u.getUnity().SendMessage("Game", "NewImage", coords);
+    }
+
+    function GetHint(imgID)
+    {
+        var url = '@Url.Action("GetHint", "Games")' + '?imgID=' + imgID + '&hintNum=' + hint;
+        $.get(url, UpdateHint);
+    }
+
+    function UpdateHint(result)
+    {
+        $("#hint" + hint + "-container").html(result);
+        hint++;
     }
 	-->
 </script>
@@ -210,14 +237,21 @@
 
     div#unityPlayer {
         cursor: default;
-        height: 600px;
-        width: 960px;
+        height: 300px;
+        width: 480px;5
     }
     .row
     {
         margin-top: 20px;
-        min-height: 350px;
+        min-height: 250px;
         min-width: 500px;
     }
+
+    #hint-container
+    {
+        color: lightsteelblue;
+        text-align: left;
+    }
+
     -->
 </style>

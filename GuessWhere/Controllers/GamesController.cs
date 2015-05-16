@@ -201,23 +201,13 @@ namespace GuessWhere.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetHint1(int? imgID)
+        public ActionResult GetHint(int? imgID, int hintNum)
         {
             if (imgID == null) { return null; }
 
             var img = db.Image.Find(imgID);
 
-            return Content(img.hint1);
-        }
-
-        [HttpGet]
-        public ActionResult GetHint2(int? imgID)
-        {
-            if (imgID == null) { return null; }
-
-            var img = db.Image.Find(imgID);
-
-            return Content(img.hint2);
+            return Content(hintNum == 1 ? img.hint1 : img.hint2);
         }
 
         public ActionResult GetCoordinates(int? imgID)
