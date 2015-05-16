@@ -48,7 +48,7 @@ namespace GuessWhere.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( HttpPostedFileBase upload, [Bind(Include = "IDimage,image,hint1,hint2,info,latitude,longitude")] Image image)
+        public ActionResult Create( HttpPostedFileBase upload, [Bind(Include = "IDimage,image,name,hint1,hint2,info,latitude,longitude")] Image image)
         {
             try
             {
@@ -59,14 +59,8 @@ namespace GuessWhere.Controllers
                         image.image = reader.ReadBytes(upload.ContentLength);
                     }
                 }
-                try
-                {
-                    image.IDimage = db.Image.Max(d => d.IDimage) + 1;
-                }
-                catch
-                {
-                    image.IDimage = 1;
-                }
+               // image.IDimage = db.Image.Max(d => d.IDimage) + 1;
+
                 if (ModelState.IsValid)
                 {
                     db.Image.Add(image);
@@ -95,6 +89,7 @@ namespace GuessWhere.Controllers
             {
                 return HttpNotFound();
             }
+            //db.Entry(image).State = EntityState.Detached;
             return View(image);
         }
 
@@ -103,8 +98,13 @@ namespace GuessWhere.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(HttpPostedFileBase upload, [Bind(Include = "IDimage,image,hint1,hint2,info,latitude,longitude")] Image image)
+        public ActionResult Edit(HttpPostedFileBase upload, [Bind(Include = "IDimage,image,name,hint1,hint2,info,latitude,longitude")] Image image)
         {
+            if(upload == null){
+                var images = (db.Image.AsNoTracking().Where(x => x.IDimage == image.IDimage));
+                image.image = images.FirstOrDefault(x => x.IDimage == image.IDimage).image;
+            }
+
             if (ModelState.IsValid)
             {
                 if (upload != null && upload.ContentLength > 0)
