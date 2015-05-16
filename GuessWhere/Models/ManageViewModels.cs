@@ -7,6 +7,7 @@ namespace GuessWhere.Models
 {
     public class IndexViewModel
     {
+        public byte [] Avatar { get; set; }
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }
@@ -83,4 +84,6 @@ namespace GuessWhere.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
+
+
 }

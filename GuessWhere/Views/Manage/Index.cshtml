@@ -6,10 +6,24 @@
 <h2 style="color: lightsteelblue">@ViewBag.Title</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
+
+
+
 <div>
     <h4 style="color: ButtonShadow">Change your account settings</h4>
     <hr align="left" width="42%" />
     <dl class="dl-horizontal">
+        @*<dt style="color: ButtonShadow">Avatar:</dt>
+        <dd style="color: ButtonShadow">
+            [
+            @if (Model.Avatar != null)
+            {
+                <img src="@Url.Action("Show", "Manage", new { avatar = Model.Avatar })" alt="image" />
+            }
+            ]
+
+        </dd>*@
+
         <dt style="color: ButtonShadow">Password:</dt>
         <dd style="color: ButtonShadow">
             [
@@ -83,3 +97,4 @@
         </dd>
     </dl>
 </div>
+
