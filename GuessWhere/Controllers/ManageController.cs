@@ -67,6 +67,7 @@ namespace GuessWhere.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
+                //Avatar = context.RegisteredUser.Find(userId).avatar, //how to get the avatar of the current user?
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
@@ -399,6 +400,15 @@ namespace GuessWhere.Controllers
             RemoveLoginSuccess,
             RemovePhoneSuccess,
             Error
+        }
+
+        public void Show(byte[] avatar)
+        {
+            Response.Buffer = true;
+            Response.Clear();
+            Response.ContentType = "image";
+            Response.BinaryWrite(avatar);
+            Response.End();
         }
 
         #endregion

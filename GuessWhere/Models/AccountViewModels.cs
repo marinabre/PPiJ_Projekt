@@ -63,6 +63,9 @@ namespace GuessWhere.Models
 
     public class RegisterViewModel
     {
+        [Display(Name = "Avatar")]
+        public byte[] Avatar { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
