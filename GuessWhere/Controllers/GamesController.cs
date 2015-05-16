@@ -26,18 +26,18 @@ namespace GuessWhere.Controllers
             Random rnd = new Random();
             int gameID = rnd.Next(1, db.Game.Max(g => g.IDgame) + 1);  //random.Next range is [first,last>
             Game game = db.Game.Find(gameID);
-            List<Image> images = new List<Image>();
 
-            //after selecting a game, we pull all the images from that game, so we can manipulate with them in the view
-            images.Add(game.Image); 
-            images.Add(game.Image1);
-            images.Add(game.Image2);
-            images.Add(game.Image3);
-            images.Add(game.Image4);
-            images.Add(game.Image5);
-            images.Add(game.Image6);
+            var imgIdList = new List<int>();
 
-            return View(images);
+            imgIdList.Add(game.Image.IDimage);
+            imgIdList.Add(game.Image1.IDimage);
+            imgIdList.Add(game.Image2.IDimage);
+            imgIdList.Add(game.Image3.IDimage);
+            imgIdList.Add(game.Image4.IDimage);
+            imgIdList.Add(game.Image5.IDimage);
+            imgIdList.Add(game.Image6.IDimage);
+
+            return View(imgIdList);
         }
 
         // GET: Games/Details/5
@@ -181,6 +181,44 @@ namespace GuessWhere.Controllers
             Response.End();
         }
 
+        [HttpGet]
+        public ContentResult GetImage(int? imgID)
+        {
+            if (imgID == null) { return null; }
 
+            var image = db.Image.Find(imgID);
+            var formatted = Convert.ToBase64String(image.image);
+
+            return Content(formatted, "img/gif");
+        }
+
+        [HttpGet]
+        public ActionResult GetHint1(int? imgID)
+        {
+            if (imgID == null) { return null; }
+
+            var img = db.Image.Find(imgID);
+
+            return Content(img.hint1);
+        }
+
+        [HttpGet]
+        public ActionResult GetHint2(int? imgID)
+        {
+            if (imgID == null) { return null; }
+
+            var img = db.Image.Find(imgID);
+
+            return Content(img.hint2);
+        }
+
+        public ActionResult GetCoordinates(int? imgID)
+        {
+            if (imgID == null) { return null; }
+
+            var img = db.Image.Find(imgID);
+
+            return Content(img.latitude + "|" + img.longitude);
+        }
     }
 }
