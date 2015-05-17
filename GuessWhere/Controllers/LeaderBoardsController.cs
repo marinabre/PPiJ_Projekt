@@ -19,7 +19,7 @@ namespace GuessWhere.Controllers
         public ActionResult Index()
         {
             var leaderBoard = db.LeaderBoard.Include(l => l.Game).Include(l => l.User);
-            return View(leaderBoard.ToList().OrderByDescending(l => l.score));
+            return View(leaderBoard.ToList());
         }
 
         // GET: LeaderBoards/Details/5
