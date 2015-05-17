@@ -25,7 +25,7 @@ namespace GuessWhere.Controllers
         {
             Random rnd = new Random();
             int gameID = rnd.Next(0, db.Game.Count());  //random.Next range is [first,last> 
-            Game game = db.Game.Skip(gameID).Take(1).First();
+            Game game = db.Game.OrderBy(x => x.IDgame).Skip(gameID).Take(1).First();
 
             var imgIdList = new List<int>();
 
