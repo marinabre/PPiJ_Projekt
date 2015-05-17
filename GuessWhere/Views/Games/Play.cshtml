@@ -55,7 +55,8 @@
     @foreach(var id in mod)
     {
         @:imgId.push("@id");
-    }
+        }
+    @*var gameID = @:imgId.pop();*@
 
     $("#nextImgButton").click(function()
     {
@@ -73,6 +74,7 @@
         if (currentImg > 6)
         {
             $(this).hide();
+            @*window.location.href = "@Url.Action("GameEnd","Games", new { id = Model[7], score = 0 })"*@
         }
     });
 

@@ -118,6 +118,15 @@ namespace GuessWhere.Controllers
             }
             return View(leaderBoard);
         }
+        public ActionResult GameEnd(int? id, long score)
+        {
+
+            LeaderBoard leaderboard = new LeaderBoard { IDgame = (int)id, score = score };
+
+            return View(leaderboard);
+        }
+
+
 
         // POST: LeaderBoards/Delete/5
         [HttpPost, ActionName("Delete")]
