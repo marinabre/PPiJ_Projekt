@@ -141,24 +141,25 @@
 </style>
 
 <script type="text/javascript">
+
     var hint = 0;
+    var score = 0;
     var currentImg = -1;
+    var imgId = [];
+
 
     @{ var mod = (List<int>)Model; }
-
-    var imgId = [];
 
     @foreach(var id in mod)
     {
         @:imgId.push("@id");
-        }
+            }
     @*var gameID = @:imgId.pop();*@
 
     $("#nextImgButton").click(function()
     {
         currentImg++;
         hint = 1;
-        var score = 0;
         if (currentImg == 0) { EnableGame(); }
         SetImg(imgId[currentImg]);
         GetCoords(imgId[currentImg]);
@@ -171,6 +172,7 @@
         if (currentImg > 6)
         {
             $(this).hide();
+            alert("Your score is: " + score);
             @*window.location.href = "@Url.Action("GameEnd","Games", new { id = Model[7], score = 0 })"*@
         }
     });
@@ -181,7 +183,7 @@
         {
             GetHint(imgId[currentImg]);
         }
-    })
+    });
 
     function GetCoords(imgID)
     {
@@ -210,8 +212,7 @@
     {
         @*Called by unity*@
         GetInfo(imgId[currentImg]);
-        result += Cosh(result);
-        alert(result);
+        score += 100/Cosh(4 * result);
     }
 
     function NextImg(coords)
@@ -246,9 +247,8 @@
     function Cosh(x)
     {
         var e = Math.E;
-        alert (e);
-        var result = (Math.pow(e, x) + Math.Pow(e, (-1) * x)) / 2;
-        alert(result);
+        var result = (Math.pow(e, x) + Math.pow(e, (-1) * x)) / 2;
         return result;
     }
+
 </script>
