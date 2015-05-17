@@ -207,7 +207,7 @@ namespace GuessWhere.Controllers
         public ActionResult GetHint(int? imgID, int hintNum)
         {
             if (imgID == null) {
-                return Content("<p>Controls needed to play the game:</p> <p>-rotating the Earth horizontally : 'A' and 'D' or the left and right arrow keys</p><p>-rotating the Earth vertically : 'W' and 'S' or the up and down arrow keys</p><p>-pinning the location : 'Q'</p>");
+                return null;
             }
 
             var img = db.Image.Find(imgID);
