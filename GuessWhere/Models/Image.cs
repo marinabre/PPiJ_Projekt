@@ -11,6 +11,7 @@ namespace GuessWhere.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Image
     {
@@ -31,7 +32,12 @@ namespace GuessWhere.Models
         public string hint1 { get; set; }
         public string hint2 { get; set; }
         public string info { get; set; }
+
+        [UIHint("Decimal")]
+        [DisplayFormat(DataFormatString = "{0:0.0000}", ApplyFormatInEditMode = true)]
         public decimal latitude { get; set; }
+        [UIHint("Decimal")]
+        [DisplayFormat(DataFormatString = "{0:0.0000}", ApplyFormatInEditMode = true)]
         public decimal longitude { get; set; }
     
         public virtual ICollection<Game> Game { get; set; }
