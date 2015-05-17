@@ -17,15 +17,22 @@ namespace GuessWhere.Controllers
         // GET: Games
         public ActionResult Index()
         {
-            var game = db.Game.Include(g => g.Image).Include(g => g.Image1).Include(g => g.Image2).Include(g => g.Image3).Include(g => g.Image4).Include(g => g.Image5).Include(g => g.Image6);
+            var game = db.Game.Include(g => g.Image)
+                              .Include(g => g.Image1)
+                              .Include(g => g.Image2)
+                              .Include(g => g.Image3)
+                              .Include(g => g.Image4)
+                              .Include(g => g.Image5)
+                              .Include(g => g.Image6);
+
             return View(game.ToList());
         }
 
         public ActionResult Play()
         {
             Random rnd = new Random();
-            int gameID = rnd.Next(0, db.Game.Count());  //random.Next range is [first,last> 
-            Game game = db.Game.OrderBy(x => x.IDgame).Skip(gameID).Take(1).First();
+            int skip = rnd.Next(0, db.Game.Count());  //random.Next range is [first,last> 
+            Game game = db.Game.OrderBy(x => x.IDgame).Skip(skip).Take(1).First();
 
             var imgIdList = new List<int>();
 
@@ -38,7 +45,7 @@ namespace GuessWhere.Controllers
             imgIdList.Add(game.Image6.IDimage);
            // imgIdList.Add(game.IDgame); have to find a way where we can get the game id in it too
 
-            ViewBag.GameID = gameID;
+            ViewBag.GameID = game.IDgame;
             return View(imgIdList);
         }
 

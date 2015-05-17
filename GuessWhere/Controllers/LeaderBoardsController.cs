@@ -117,7 +117,9 @@ namespace GuessWhere.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LeaderBoard leaderBoard = db.LeaderBoard.Find(id);
+
+            var leaderBoard = db.LeaderBoard.Find(id);
+            
             if (leaderBoard == null)
             {
                 return HttpNotFound();
@@ -125,18 +127,22 @@ namespace GuessWhere.Controllers
             return View(leaderBoard);
         }
 
-        //
+        //5
         public ActionResult GameEnd(int? id, string gamescore)
         {
-
-            var IDgame = (db.Game.Find(id)).IDgame;
+            var game = db.Game.Find(id);
             decimal score;
             score = decimal.Parse(gamescore, CultureInfo.InvariantCulture);
             //score = (float) Math.Round((decimal)score, 3); //so we don't have wild scores with 20 digits
 
             ViewBag.score = score;
-            ViewBag.IDgame = IDgame;
-            LeaderBoard leaderboard = new LeaderBoard { IDgame = IDgame, score = score }; 
+            ViewBag.IDgame = game.IDgame;
+
+            var leaderboard = new LeaderBoard 
+                             { 
+                                 IDgame = game.IDgame, 
+                                 score = score 
+                             }; 
 
             return View(leaderboard);
         }
