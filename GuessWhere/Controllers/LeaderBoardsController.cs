@@ -127,11 +127,15 @@ namespace GuessWhere.Controllers
         //    return View();
         //}
 
-        public ActionResult GameEnd(int? id, float score)
+        public ActionResult GameEnd(int? id, string gamescore)
         {
-            //LeaderBoard leaderboard = new LeaderBoard { IDgame = (int)id, score = score };
+
             ViewBag.IDgame = (db.Game.Find(id)).IDgame;
+            float score;
+            float.TryParse(gamescore, out score);
+            Math.Round(score, 3); //so we don't have wild scores with 20 digits
             ViewBag.score = score;
+         
 
             return View();
         }
