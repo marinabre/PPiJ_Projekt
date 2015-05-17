@@ -18,9 +18,9 @@ namespace GuessWhere.Models
         public int IDuser { get; set; }
         public int IDgame { get; set; }
         public string username { get; set; }
-        public long score { get; set; }
+        public double score { get; set; }
     
-        public virtual User User { get; set; }
         public virtual Game Game { get; set; }
+        public virtual User User { get; set; }
     }
 }

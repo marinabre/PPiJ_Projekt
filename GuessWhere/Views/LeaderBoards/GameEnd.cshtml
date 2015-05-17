@@ -4,33 +4,38 @@
     ViewBag.Title = "Game over :)";
 }
 
-<h2 style="color:cornflowerblue">Game Over</h2>
-<p style="color:lightsteelblue">Your Score is:</p>
-<div class="text-center" style="color:lightsteelblue">@Html.DisplayFor(model => model.score) </div>
+<h2 style="color:cornflowerblue" >Game Over</h2>
+
+
+<h3 style= "padding-top:20px; color:lightsteelblue">Your Score is:</h3>
+<div class="text-center" style="padding-top:20px; color:lightsteelblue">@Html.DisplayFor(model => model.score) </div>
 @using (Html.BeginForm("Create", "LeaderBoards", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal" style="color: lightsteelblue">
-                <div class="form-group">
-                    @Html.Label("Username", new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create username" class="btn btn-default" />
-                    </div>
-                </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IDboard)
+        @Html.HiddenFor(model => model.IDgame)
+        @Html.HiddenFor(model => model.score)
+
+        <div class="form-group">
+            @Html.Label("Username", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
             </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create username" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
 }
 <div class="row">
     <div id="controls-container" class="col-sm-3 pull-left">
         <button id="Save Game" class="btn btn-success">Save game!</button>
-        <button id="Play another" class="btn btn-danger">Play another</button>
+        <button id="Play another" class="btn btn-danger" href="~/Games/Play">Play another</button>
     </div>
 </div>
-
-
 
