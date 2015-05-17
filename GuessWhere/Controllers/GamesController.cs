@@ -38,6 +38,7 @@ namespace GuessWhere.Controllers
             imgIdList.Add(game.Image6.IDimage);
            // imgIdList.Add(game.IDgame); have to find a way where we can get the game id in it too
 
+            ViewBag.GameID = gameID;
             return View(imgIdList);
         }
 
