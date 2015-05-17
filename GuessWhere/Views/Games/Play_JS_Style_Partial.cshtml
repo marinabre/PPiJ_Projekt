@@ -213,7 +213,7 @@
     {
         @*Called by unity*@
         GetInfo(imgId[currentImg]);
-        score += 100/Cosh(4 * result);
+        score += (100 / Cosh(4 * result)) / hint;
     }
 
     function NextImg(coords)
@@ -255,7 +255,8 @@
     function GameLoaded()
     {
         @*Called by unity*@
-        $("#nextImgButton").show();
+        $("#nextImgButton").removeClass("hide");
+        $("#hint-button").removeClass("hide");
     }
 
 </script>
