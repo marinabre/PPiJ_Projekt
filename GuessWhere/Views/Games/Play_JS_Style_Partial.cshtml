@@ -158,6 +158,7 @@
     {
         currentImg++;
         hint = 1;
+        var score = 0;
         if (currentImg == 0) { EnableGame(); }
         SetImg(imgId[currentImg]);
         GetCoords(imgId[currentImg]);
@@ -209,6 +210,8 @@
     {
         @*Called by unity*@
         GetInfo(imgId[currentImg]);
+        result += Cosh(result);
+        alert(result);
     }
 
     function NextImg(coords)
@@ -238,5 +241,14 @@
     function UpdateInfo(result)
     {
         $("#info-container").html(result);
+    }
+
+    function Cosh(x)
+    {
+        var e = Math.E;
+        alert (e);
+        var result = (Math.pow(e, x) + Math.Pow(e, (-1) * x)) / 2;
+        alert(result);
+        return result;
     }
 </script>
