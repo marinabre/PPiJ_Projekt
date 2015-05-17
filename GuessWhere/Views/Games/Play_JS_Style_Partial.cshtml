@@ -162,7 +162,6 @@
     {
         @:imgId.push("@id");
             }
-    @*var gameID = @:imgId.pop();*@
 
     $("#nextImgButton").click(function()
     {
@@ -183,7 +182,7 @@
         {
             $(this).hide();
             alert("Your score is: " + score);
-            @*window.location.href = "@Url.Action("GameEnd","Games", new { id = Model[7], score = 0 })"*@
+            @*window.location.href = "@Url.Action("GameEnd","LeaderBoards", new { id = ViewBag.GameID, gamescore = score })"*@
         }
     });
 
