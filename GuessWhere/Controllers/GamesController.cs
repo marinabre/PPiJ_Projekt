@@ -107,19 +107,19 @@ namespace GuessWhere.Controllers
                 return HttpNotFound();
             }
             List<int> selected = new List<int>();
-            ViewBag.IDimg1 = new SelectList(db.Image, "IDimage", "name", game.IDimg1, selected);
+            ViewBag.IDimg1 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg1, selected);
             selected.Add(game.IDimg1);
-            ViewBag.IDimg2 = new SelectList(db.Image, "IDimage", "name", game.IDimg2, selected);
+            ViewBag.IDimg2 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg2, selected);
             selected.Add(game.IDimg2);
-            ViewBag.IDimg3 = new SelectList(db.Image, "IDimage", "name", game.IDimg3, selected);
+            ViewBag.IDimg3 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg3, selected);
             selected.Add(game.IDimg3);
-            ViewBag.IDimg4 = new SelectList(db.Image, "IDimage", "name", game.IDimg4, selected);
+            ViewBag.IDimg4 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg4, selected);
             selected.Add(game.IDimg4);
-            ViewBag.IDimg5 = new SelectList(db.Image, "IDimage", "name", game.IDimg5, selected);
+            ViewBag.IDimg5 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg5, selected);
             selected.Add(game.IDimg5);
-            ViewBag.IDimg6 = new SelectList(db.Image, "IDimage", "name", game.IDimg6, selected);
+            ViewBag.IDimg6 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg6, selected);
             selected.Add(game.IDimg6);
-            ViewBag.IDimg7 = new SelectList(db.Image, "IDimage", "name", game.IDimg7, selected);
+            ViewBag.IDimg7 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg7, selected);
             selected.Add(game.IDimg7);
             return View(game);
         }
@@ -137,13 +137,13 @@ namespace GuessWhere.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDimg1 = new SelectList(db.Image, "IDimage", "name", game.IDimg1);
-            ViewBag.IDimg2 = new SelectList(db.Image, "IDimage", "name", game.IDimg2);
-            ViewBag.IDimg3 = new SelectList(db.Image, "IDimage", "name", game.IDimg3);
-            ViewBag.IDimg4 = new SelectList(db.Image, "IDimage", "name", game.IDimg4);
-            ViewBag.IDimg5 = new SelectList(db.Image, "IDimage", "name", game.IDimg5);
-            ViewBag.IDimg6 = new SelectList(db.Image, "IDimage", "name", game.IDimg6);
-            ViewBag.IDimg7 = new SelectList(db.Image, "IDimage", "name", game.IDimg7);
+            ViewBag.IDimg1 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg1);
+            ViewBag.IDimg2 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg2);
+            ViewBag.IDimg3 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg3);
+            ViewBag.IDimg4 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg4);
+            ViewBag.IDimg5 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg5);
+            ViewBag.IDimg6 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg6);
+            ViewBag.IDimg7 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg7);
             return View(game);
         }
 
