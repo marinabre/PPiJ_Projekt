@@ -143,6 +143,8 @@
 <script type="text/javascript">
 
     var gameLoaded = 0;
+    var nextImgEnabled = 1;
+    var hintsEnabled = 0;
     var hint = 0;
     var score = 0;
     var currentImg = -1;
@@ -159,15 +161,17 @@
 
     $("#nextImgButton").click(function()
     {
+        if (nextImgEnabled == 0)
+        {
+            return;
+        }
+        nextImgEnabled = 0;
+        hintsEnabled = 0;
         currentImg++;
         hint = 1;
         if (currentImg == 0) { EnableGame(); }
         SetImg(imgId[currentImg]);
         GetCoords(imgId[currentImg]);
-
-        $("#hint1-container").html("");
-        $("#hint2-container").html("");
-        $("#info-container").html("");
 
         $(this).html("Next image");
         if (currentImg > 6)
@@ -178,12 +182,30 @@
         }
     });
 
+    $("#the-image").load(function()
+    {
+        hintsEnabled = 1;
+        $("#hint1-container").html("");
+        $("#hint2-container").html("");
+        $("#info-container").html("");
+    });
+
     $("#hint-button").click(function()
     {
+        if (hintsEnabled == 0) return;
+
         if(hint <= 2)
         {
             GetHint(imgId[currentImg]);
         }
+    });
+
+    $("#help-button").click(function()
+    {
+        var text = "Controls needed to play the game:\n-rotating the Earth horizontally" +
+                   ": 'A' and 'D' or the left and right arrow keys\n-rotating the Earth ver" +
+                   "tically : 'W' and 'S' or the up and down arrow keys\n-pinning the location : 'Q'";
+        alert(text);
     });
 
     function GetCoords(imgID)
@@ -214,6 +236,7 @@
         @*Called by unity*@
         GetInfo(imgId[currentImg]);
         score += (100 / Cosh(4 * result)) / hint;
+        nextImgEnabled = 1;
     }
 
     function NextImg(coords)
