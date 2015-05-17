@@ -39,7 +39,7 @@
           <Property Name="IDuser" Type="int" Nullable="false" />
           <Property Name="IDgame" Type="int" Nullable="false" />
           <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="score" Type="bigint" Nullable="false" />
+          <Property Name="score" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="RegisteredUser">
           <Key>
@@ -61,7 +61,7 @@
           <Property Name="IDSavedGame" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDGame" Type="int" Nullable="false" />
           <Property Name="IDuser" Type="int" Nullable="false" />
-          <Property Name="score" Type="bigint" Nullable="false" />
+          <Property Name="score" Type="float" Nullable="false" />
           <Property Name="datePlayed" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
@@ -276,17 +276,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="Guess_WhereModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Guess_WhereEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="LeaderBoard" EntityType="Guess_WhereModel.LeaderBoard" />
           <EntitySet Name="User" EntityType="Guess_WhereModel.User" />
-          <AssociationSet Name="FK_LeaderBoard_User" Association="Guess_WhereModel.FK_LeaderBoard_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="LeaderBoard" EntitySet="LeaderBoard" />
-          </AssociationSet>
-          <EntitySet Name="SavedGames" EntityType="Guess_WhereModel.SavedGames" />
-          <AssociationSet Name="FK_SavedGames_User" Association="Guess_WhereModel.FK_SavedGames_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="SavedGames" EntitySet="SavedGames" />
-          </AssociationSet>
           <EntitySet Name="RegisteredUser" EntityType="Guess_WhereModel.RegisteredUser" />
           <AssociationSet Name="FK_RegisteredUser_User" Association="Guess_WhereModel.FK_RegisteredUser_User">
             <End Role="User" EntitySet="User" />
@@ -322,6 +312,8 @@
             <End Role="Image" EntitySet="Image" />
             <End Role="Game" EntitySet="Game" />
           </AssociationSet>
+          <EntitySet Name="LeaderBoard" EntityType="Guess_WhereModel.LeaderBoard" />
+          <EntitySet Name="SavedGames" EntityType="Guess_WhereModel.SavedGames" />
           <AssociationSet Name="FK_LeaderBoard_Game" Association="Guess_WhereModel.FK_LeaderBoard_Game">
             <End Role="Game" EntitySet="Game" />
             <End Role="LeaderBoard" EntitySet="LeaderBoard" />
@@ -330,65 +322,25 @@
             <End Role="Game" EntitySet="Game" />
             <End Role="SavedGames" EntitySet="SavedGames" />
           </AssociationSet>
+          <AssociationSet Name="FK_LeaderBoard_User" Association="Guess_WhereModel.FK_LeaderBoard_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="LeaderBoard" EntitySet="LeaderBoard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SavedGames_User" Association="Guess_WhereModel.FK_SavedGames_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="SavedGames" EntitySet="SavedGames" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="LeaderBoard">
-          <Key>
-            <PropertyRef Name="IDboard" />
-          </Key>
-          <Property Name="IDboard" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IDuser" Type="Int32" Nullable="false" />
-          <Property Name="IDgame" Type="Int32" Nullable="false" />
-          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="score" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Guess_WhereModel.FK_LeaderBoard_User" FromRole="LeaderBoard" ToRole="User" />
-          <NavigationProperty Name="Game" Relationship="Guess_WhereModel.FK_LeaderBoard_Game" FromRole="LeaderBoard" ToRole="Game" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="IDuser" />
           </Key>
           <Property Name="IDuser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RegisteredUser" Relationship="Guess_WhereModel.FK_RegisteredUser_User" FromRole="User" ToRole="RegisteredUser" />
           <NavigationProperty Name="LeaderBoard" Relationship="Guess_WhereModel.FK_LeaderBoard_User" FromRole="User" ToRole="LeaderBoard" />
           <NavigationProperty Name="SavedGames" Relationship="Guess_WhereModel.FK_SavedGames_User" FromRole="User" ToRole="SavedGames" />
-          <NavigationProperty Name="RegisteredUser" Relationship="Guess_WhereModel.FK_RegisteredUser_User" FromRole="User" ToRole="RegisteredUser" />
         </EntityType>
-        <Association Name="FK_LeaderBoard_User">
-          <End Type="Guess_WhereModel.User" Role="User" Multiplicity="1" />
-          <End Type="Guess_WhereModel.LeaderBoard" Role="LeaderBoard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="IDuser" />
-            </Principal>
-            <Dependent Role="LeaderBoard">
-              <PropertyRef Name="IDuser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="SavedGames">
-          <Key>
-            <PropertyRef Name="IDSavedGame" />
-          </Key>
-          <Property Name="IDSavedGame" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IDGame" Type="Int32" Nullable="false" />
-          <Property Name="IDuser" Type="Int32" Nullable="false" />
-          <Property Name="score" Type="Int64" Nullable="false" />
-          <Property Name="datePlayed" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="User" Relationship="Guess_WhereModel.FK_SavedGames_User" FromRole="SavedGames" ToRole="User" />
-          <NavigationProperty Name="Game" Relationship="Guess_WhereModel.FK_SavedGames_Game" FromRole="SavedGames" ToRole="Game" />
-        </EntityType>
-        <Association Name="FK_SavedGames_User">
-          <End Type="Guess_WhereModel.User" Role="User" Multiplicity="1" />
-          <End Type="Guess_WhereModel.SavedGames" Role="SavedGames" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="IDuser" />
-            </Principal>
-            <Dependent Role="SavedGames">
-              <PropertyRef Name="IDuser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="RegisteredUser">
           <Key>
             <PropertyRef Name="IDreguser" />
@@ -541,6 +493,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="LeaderBoard">
+          <Key>
+            <PropertyRef Name="IDboard" />
+          </Key>
+          <Property Name="IDboard" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDuser" Type="Int32" Nullable="false" />
+          <Property Name="IDgame" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="score" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="Guess_WhereModel.FK_LeaderBoard_Game" FromRole="LeaderBoard" ToRole="Game" />
+          <NavigationProperty Name="User" Relationship="Guess_WhereModel.FK_LeaderBoard_User" FromRole="LeaderBoard" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SavedGames">
+          <Key>
+            <PropertyRef Name="IDSavedGame" />
+          </Key>
+          <Property Name="IDSavedGame" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDGame" Type="Int32" Nullable="false" />
+          <Property Name="IDuser" Type="Int32" Nullable="false" />
+          <Property Name="score" Type="Double" Nullable="false" />
+          <Property Name="datePlayed" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Game" Relationship="Guess_WhereModel.FK_SavedGames_Game" FromRole="SavedGames" ToRole="Game" />
+          <NavigationProperty Name="User" Relationship="Guess_WhereModel.FK_SavedGames_User" FromRole="SavedGames" ToRole="User" />
+        </EntityType>
         <Association Name="FK_LeaderBoard_Game">
           <End Type="Guess_WhereModel.Game" Role="Game" Multiplicity="1" />
           <End Type="Guess_WhereModel.LeaderBoard" Role="LeaderBoard" Multiplicity="*" />
@@ -565,39 +541,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_LeaderBoard_User">
+          <End Type="Guess_WhereModel.User" Role="User" Multiplicity="1" />
+          <End Type="Guess_WhereModel.LeaderBoard" Role="LeaderBoard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IDuser" />
+            </Principal>
+            <Dependent Role="LeaderBoard">
+              <PropertyRef Name="IDuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SavedGames_User">
+          <End Type="Guess_WhereModel.User" Role="User" Multiplicity="1" />
+          <End Type="Guess_WhereModel.SavedGames" Role="SavedGames" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IDuser" />
+            </Principal>
+            <Dependent Role="SavedGames">
+              <PropertyRef Name="IDuser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Guess_WhereModelStoreContainer" CdmEntityContainer="Guess_WhereEntities1">
-          <EntitySetMapping Name="LeaderBoard">
-            <EntityTypeMapping TypeName="Guess_WhereModel.LeaderBoard">
-              <MappingFragment StoreEntitySet="LeaderBoard">
-                <ScalarProperty Name="score" ColumnName="score" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="IDgame" ColumnName="IDgame" />
-                <ScalarProperty Name="IDuser" ColumnName="IDuser" />
-                <ScalarProperty Name="IDboard" ColumnName="IDboard" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="Guess_WhereModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="IDuser" ColumnName="IDuser" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SavedGames">
-            <EntityTypeMapping TypeName="Guess_WhereModel.SavedGames">
-              <MappingFragment StoreEntitySet="SavedGames">
-                <ScalarProperty Name="datePlayed" ColumnName="datePlayed" />
-                <ScalarProperty Name="score" ColumnName="score" />
-                <ScalarProperty Name="IDuser" ColumnName="IDuser" />
-                <ScalarProperty Name="IDGame" ColumnName="IDGame" />
-                <ScalarProperty Name="IDSavedGame" ColumnName="IDSavedGame" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -640,6 +618,28 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="IDimage" ColumnName="IDimage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaderBoard">
+            <EntityTypeMapping TypeName="Guess_WhereModel.LeaderBoard">
+              <MappingFragment StoreEntitySet="LeaderBoard">
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="IDgame" ColumnName="IDgame" />
+                <ScalarProperty Name="IDuser" ColumnName="IDuser" />
+                <ScalarProperty Name="IDboard" ColumnName="IDboard" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SavedGames">
+            <EntityTypeMapping TypeName="Guess_WhereModel.SavedGames">
+              <MappingFragment StoreEntitySet="SavedGames">
+                <ScalarProperty Name="datePlayed" ColumnName="datePlayed" />
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="IDuser" ColumnName="IDuser" />
+                <ScalarProperty Name="IDGame" ColumnName="IDGame" />
+                <ScalarProperty Name="IDSavedGame" ColumnName="IDSavedGame" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

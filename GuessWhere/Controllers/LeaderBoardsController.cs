@@ -118,12 +118,22 @@ namespace GuessWhere.Controllers
             }
             return View(leaderBoard);
         }
-        public ActionResult GameEnd(int? id, long score)
+
+        //public ActionResult GameEnd(int? id)
+        //{
+        //    ViewBag.IDgame = (db.Game.FirstOrDefault(x=> x.IDgame == id)).IDgame;
+        //    ViewBag.score = 0;
+
+        //    return View();
+        //}
+
+        public ActionResult GameEnd(int? id, float score)
         {
+            //LeaderBoard leaderboard = new LeaderBoard { IDgame = (int)id, score = score };
+            ViewBag.IDgame = (db.Game.Find(id)).IDgame;
+            ViewBag.score = score;
 
-            LeaderBoard leaderboard = new LeaderBoard { IDgame = (int)id, score = score };
-
-            return View(leaderboard);
+            return View();
         }
 
 
