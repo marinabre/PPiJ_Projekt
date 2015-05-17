@@ -426,6 +426,17 @@ namespace GuessWhere.Controllers
         {
             return View();
         }
+        public ActionResult Annonymous([Bind(Include = "IDuser, username")] User user)
+        {
+
+            if (ModelState.IsValid)
+            {
+                context.User.Add(user);
+                context.SaveChanges();
+            }
+            return View();
+        }
+
 
         protected override void Dispose(bool disposing)
         {

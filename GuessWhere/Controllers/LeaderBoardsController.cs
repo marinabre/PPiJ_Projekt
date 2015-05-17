@@ -51,6 +51,12 @@ namespace GuessWhere.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IDboard,IDuser,IDgame,username,score")] LeaderBoard leaderBoard)
         {
+            if (db.User.AsNoTracking().Where(x => x.username == leaderBoard.username) == null)
+            {
+                db.User.Add(new User { username = leaderBoard.username });
+                db.SaveChanges();
+                leaderBoard.IDuser = (db.User.First(x => x.username == leaderBoard.username)).IDuser;
+            }
             if (ModelState.IsValid)
             {
                 db.LeaderBoard.Add(leaderBoard);

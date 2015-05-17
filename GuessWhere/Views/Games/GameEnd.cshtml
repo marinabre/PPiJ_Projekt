@@ -1,33 +1,36 @@
-﻿@model List<GuessWhere.Models.Image>
+﻿@model GuessWhere.Models.LeaderBoard
 
 @{
-    ViewBag.Title = "Game";
+    ViewBag.Title = "Game over :)";
 }
 
-<h2></h2>
-<table class="table">
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <img src="@Url.Action("Show", "Images", new { id = item.IDimage })" alt="image" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p style="padding-top:20px"><a class="btn btn-default" onclick="@Html.DisplayFor(modelItem => item.hint1)">HINT</a></p>
-                <p style="padding-top:20px"><a class="btn btn-default" onclick="@Html.DisplayFor(modelItem => item.hint2)">HINT</a></p>
-            </td>
-        </tr>
-        @*@while(/*the pin isn't pinned on the planet or one of the GIVEUP or NEXT isn't clicked*/)
-        {/*wait*/
-        }*@
-    }
+<h2 style="color:cornflowerblue">Game Over</h2>
+<p style="color:lightsteelblue">Your Score is:</p>
+<div class="text-center" style="color:lightsteelblue">@Html.DisplayFor(model => model.score) </div>
+@using (Html.BeginForm("Create", "LeaderBoards", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal" style="color: lightsteelblue">
+                <div class="form-group">
+                    @Html.Label("Username", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create username" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+}
+<div class="row">
+    <div id="controls-container" class="col-sm-3 pull-left">
+        <button id="Save Game" class="btn btn-success">Save game!</button>
+        <button id="Play another" class="btn btn-danger">Play another</button>
+    </div>
+</div>
 
 
-</table>
 
-
-
-<p style="padding-top: 20px"><a class="btn btn-primary btn-lg">&nbsp; &nbsp; &nbsp; &nbsp;GIVE UP &nbsp; &nbsp; &nbsp;</a></p>
-<p style="padding-top: 20px"><a class="btn btn-primary btn-lg">&nbsp; &nbsp; &nbsp; &nbsp;NEXT IMAGE &nbsp; &nbsp; &nbsp;</a></p>

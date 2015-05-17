@@ -40,6 +40,7 @@ namespace GuessWhere.Controllers
             return View(imgIdList);
         }
 
+
         // GET: Games/Details/5
         public ActionResult Details(int? id)
         {
