@@ -1,0 +1,242 @@
+﻿
+<script type='text/javascript' src='https://ssl-webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/jquery.min.js'>
+</script>
+<script type="text/javascript">
+	<!--
+	var unityObjectUrl = "http://webplayer.unity3d.com/download_webplayer-3.x/3.0/uo/UnityObject2.js";
+	if (document.location.protocol == 'https:')
+		unityObjectUrl = unityObjectUrl.replace("http://", "https://ssl-");
+	document.write('<script type="text\/javascript" src="' + unityObjectUrl + '"><\/script>');
+	-->
+</script>
+<script type="text/javascript">
+	<!--
+		var config = {
+			width: 960,
+			height: 600,
+			params: { enableDebugging:"0" }
+
+		};
+		var u = new UnityObject2(config);
+
+		jQuery(function() {
+
+			var $missingScreen = jQuery("#unityPlayer").find(".missing");
+			var $brokenScreen = jQuery("#unityPlayer").find(".broken");
+			$missingScreen.hide();
+			$brokenScreen.hide();
+
+			u.observeProgress(function (progress) {
+				switch(progress.pluginStatus) {
+					case "broken":
+						$brokenScreen.find("a").click(function (e) {
+							e.stopPropagation();
+							e.preventDefault();
+							u.installPlugin();
+							return false;
+						});
+						$brokenScreen.show();
+					break;
+					case "missing":
+						$missingScreen.find("a").click(function (e) {
+							e.stopPropagation();
+							e.preventDefault();
+							u.installPlugin();
+							return false;
+						});
+						$missingScreen.show();
+					break;
+					case "installed":
+						$missingScreen.remove();
+					break;
+					case "first":
+					break;
+				}
+			});
+			u.initPlugin(jQuery("#unityPlayer")[0], "http://guess-where.azurewebsites.net/Content/Web player build.unity3d");
+		});
+	-->
+</script>
+<style type="text/css">
+    <!--
+    body {
+        font-family: Helvetica, Verdana, Arial, sans-serif;
+        background-color: white;
+        color: black;
+        text-align: center;
+    }
+
+    a:link, a:visited {
+        color: #000;
+    }
+
+    a:active, a:hover {
+        color: #666;
+    }
+
+    p.header {
+        font-size: small;
+    }
+
+        p.header span {
+            font-weight: bold;
+        }
+
+    p.footer {
+        font-size: x-small;
+    }
+
+    div.content {
+        margin: auto;
+        width: 960px;
+    }
+
+    div.broken,
+    div.missing {
+        margin: auto;
+        position: relative;
+        top: 50%;
+        width: 193px;
+    }
+
+        div.broken a,
+        div.missing a {
+            height: 63px;
+            position: relative;
+            top: -31px;
+        }
+
+        div.broken img,
+        div.missing img {
+            border-width: 0px;
+        }
+
+    div.broken {
+        display: none;
+    }
+
+    div#unityPlayer {
+        cursor: default;
+        height: 300px;
+        width: 480px;
+        5;
+    }
+
+    .row {
+        margin-top: 20px;
+        min-height: 250px;
+        min-width: 500px;
+    }
+
+    #hint-container {
+        color: #000000;
+        text-align: left;
+        background: rgba(212, 231, 255, 0.80);
+    }
+
+    #controls-container {
+        margin: 20px;
+    }
+    -->
+</style>
+
+<script type="text/javascript">
+    var hint = 0;
+    var currentImg = -1;
+
+    @{ var mod = (List<int>)Model; }
+
+    var imgId = [];
+
+    @foreach(var id in mod)
+    {
+        @:imgId.push("@id");
+        }
+    @*var gameID = @:imgId.pop();*@
+
+    $("#nextImgButton").click(function()
+    {
+        currentImg++;
+        hint = 1;
+        if (currentImg == 0) { EnableGame(); }
+        SetImg(imgId[currentImg]);
+        GetCoords(imgId[currentImg]);
+
+        $("#hint1-container").html("");
+        $("#hint2-container").html("");
+        $("#info-container").html("");
+
+        $(this).html("Next image");
+        if (currentImg > 6)
+        {
+            $(this).hide();
+            @*window.location.href = "@Url.Action("GameEnd","Games", new { id = Model[7], score = 0 })"*@
+        }
+    });
+
+    $("#hint-button").click(function()
+    {
+        if(hint <= 2)
+        {
+            GetHint(imgId[currentImg]);
+        }
+    })
+
+    function GetCoords(imgID)
+    {
+        var url = '@Url.Action("GetCoordinates", "Games")' + '?imgID=' + imgID;
+        $.get(url, NextImg);
+    }
+
+    function updateImg(data)
+    {
+        $("#the-image").attr("src", "data:image/gif;base64," + data);
+    }
+
+    function SetImg(imgID)
+    {
+        var url = '@Url.Action("GetImage", "Games")' + '?imgID=' + imgID;
+        $.get(url,updateImg);
+    }
+
+    function EnableGame()
+    {
+        @*Enables playing game*@
+        u.getUnity().SendMessage("Game", "EnableGame", null);
+    }
+
+    function GetResult(result)
+    {
+        @*Called by unity*@
+        GetInfo(imgId[currentImg]);
+    }
+
+    function NextImg(coords)
+    {
+        @*Gives unity coordinates of image*@
+        u.getUnity().SendMessage("Game", "NewImage", coords);
+    }
+
+    function GetHint(imgID)
+    {
+        var url = '@Url.Action("GetHint", "Games")' + '?imgID=' + imgID + '&hintNum=' + hint;
+        $.get(url, UpdateHint);
+    }
+
+    function UpdateHint(result)
+    {
+        $("#hint" + hint + "-container").html(result);
+        hint++;
+    }
+
+    function GetInfo(imgID)
+    {
+        var url = '@Url.Action("GetInfo", "Games")' + '?imgID=' + imgID;
+        $.get(url, UpdateInfo);
+    }
+
+    function UpdateInfo(result)
+    {
+        $("#info-container").html(result);
+    }
+</script>
