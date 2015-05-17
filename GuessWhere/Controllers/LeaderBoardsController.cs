@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Globalization;
 using GuessWhere.Models;
 
 namespace GuessWhere.Controllers
@@ -51,11 +52,16 @@ namespace GuessWhere.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IDboard,IDuser,IDgame,username,score")] LeaderBoard leaderBoard)
         {
-            if (db.User.AsNoTracking().Where(x => x.username == leaderBoard.username) == null)
+            try
+            {
+                var user = db.User.AsNoTracking().Where(x => x.username == leaderBoard.username);
+                var us = user.First(x => x.username == leaderBoard.username);
+            }catch
             {
                 db.User.Add(new User { username = leaderBoard.username });
                 db.SaveChanges();
                 leaderBoard.IDuser = (db.User.First(x => x.username == leaderBoard.username)).IDuser;
+                //db = new Guess_WhereEntities1();
             }
             if (ModelState.IsValid)
             {
@@ -119,25 +125,20 @@ namespace GuessWhere.Controllers
             return View(leaderBoard);
         }
 
-        //public ActionResult GameEnd(int? id)
-        //{
-        //    ViewBag.IDgame = (db.Game.FirstOrDefault(x=> x.IDgame == id)).IDgame;
-        //    ViewBag.score = 0;
-
-        //    return View();
-        //}
-
+        //
         public ActionResult GameEnd(int? id, string gamescore)
         {
 
-            ViewBag.IDgame = (db.Game.Find(id)).IDgame;
-            float score;
-            float.TryParse(gamescore, out score);
-            Math.Round(score, 3); //so we don't have wild scores with 20 digits
-            ViewBag.score = score;
-         
+            var IDgame = (db.Game.Find(id)).IDgame;
+            decimal score;
+            score = decimal.Parse(gamescore, CultureInfo.InvariantCulture);
+            //score = (float) Math.Round((decimal)score, 3); //so we don't have wild scores with 20 digits
 
-            return View();
+            ViewBag.score = score;
+            ViewBag.IDgame = IDgame;
+            LeaderBoard leaderboard = new LeaderBoard { IDgame = IDgame, score = score }; 
+
+            return View(leaderboard);
         }
 
 

@@ -17,7 +17,7 @@ namespace GuessWhere.Models
         public int IDSavedGame { get; set; }
         public int IDGame { get; set; }
         public int IDuser { get; set; }
-        public double score { get; set; }
+        public decimal score { get; set; }
         public System.DateTime datePlayed { get; set; }
     
         public virtual Game Game { get; set; }

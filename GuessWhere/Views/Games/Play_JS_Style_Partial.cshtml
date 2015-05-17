@@ -161,7 +161,7 @@
     @foreach(var id in mod)
     {
         @:imgId.push("@id");
-            }
+                }
 
     $("#nextImgButton").click(function()
     {
@@ -183,6 +183,7 @@
             $(this).hide();
             alert("Your score is: " + score);
             @*window.location.href = "@Url.Action("GameEnd","LeaderBoards", new { id = ViewBag.GameID, gamescore = score })"*@
+            window.location.href = '@Url.Action("GameEnd", "LeaderBoards")' + "?id=" + @ViewBag.GameID + "&gamescore=" + score.toFixed(3);
         }
     });
 

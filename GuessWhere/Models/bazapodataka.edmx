@@ -39,7 +39,7 @@
           <Property Name="IDuser" Type="int" Nullable="false" />
           <Property Name="IDgame" Type="int" Nullable="false" />
           <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="score" Type="float" Nullable="false" />
+          <Property Name="score" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="RegisteredUser">
           <Key>
@@ -61,7 +61,7 @@
           <Property Name="IDSavedGame" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDGame" Type="int" Nullable="false" />
           <Property Name="IDuser" Type="int" Nullable="false" />
-          <Property Name="score" Type="float" Nullable="false" />
+          <Property Name="score" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="datePlayed" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
@@ -330,7 +330,7 @@
             <End Role="User" EntitySet="User" />
             <End Role="SavedGames" EntitySet="SavedGames" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="IDuser" />
@@ -340,7 +340,7 @@
           <NavigationProperty Name="RegisteredUser" Relationship="Guess_WhereModel.FK_RegisteredUser_User" FromRole="User" ToRole="RegisteredUser" />
           <NavigationProperty Name="LeaderBoard" Relationship="Guess_WhereModel.FK_LeaderBoard_User" FromRole="User" ToRole="LeaderBoard" />
           <NavigationProperty Name="SavedGames" Relationship="Guess_WhereModel.FK_SavedGames_User" FromRole="User" ToRole="SavedGames" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="RegisteredUser">
           <Key>
             <PropertyRef Name="IDreguser" />
@@ -388,7 +388,7 @@
           <NavigationProperty Name="Image6" Relationship="Guess_WhereModel.FK_Game_Image7" FromRole="Game" ToRole="Image" />
           <NavigationProperty Name="LeaderBoard" Relationship="Guess_WhereModel.FK_LeaderBoard_Game" FromRole="Game" ToRole="LeaderBoard" />
           <NavigationProperty Name="SavedGames" Relationship="Guess_WhereModel.FK_SavedGames_Game" FromRole="Game" ToRole="SavedGames" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="Image">
           <Key>
             <PropertyRef Name="IDimage" />
@@ -501,7 +501,7 @@
           <Property Name="IDuser" Type="Int32" Nullable="false" />
           <Property Name="IDgame" Type="Int32" Nullable="false" />
           <Property Name="username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="score" Type="Double" Nullable="false" />
+          <Property Name="score" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <NavigationProperty Name="Game" Relationship="Guess_WhereModel.FK_LeaderBoard_Game" FromRole="LeaderBoard" ToRole="Game" />
           <NavigationProperty Name="User" Relationship="Guess_WhereModel.FK_LeaderBoard_User" FromRole="LeaderBoard" ToRole="User" />
         </EntityType>
@@ -512,7 +512,7 @@
           <Property Name="IDSavedGame" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDGame" Type="Int32" Nullable="false" />
           <Property Name="IDuser" Type="Int32" Nullable="false" />
-          <Property Name="score" Type="Double" Nullable="false" />
+          <Property Name="score" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="datePlayed" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Game" Relationship="Guess_WhereModel.FK_SavedGames_Game" FromRole="SavedGames" ToRole="Game" />
           <NavigationProperty Name="User" Relationship="Guess_WhereModel.FK_SavedGames_User" FromRole="SavedGames" ToRole="User" />
@@ -565,7 +565,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -643,7 +643,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
