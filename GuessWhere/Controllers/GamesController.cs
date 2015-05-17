@@ -24,8 +24,8 @@ namespace GuessWhere.Controllers
         public ActionResult Play()
         {
             Random rnd = new Random();
-            int gameID = rnd.Next(1, db.Game.Max(g => g.IDgame) + 1);  //random.Next range is [first,last>
-            Game game = db.Game.FirstOrDefault(x => x.IDgame == gameID);
+            int gameID = rnd.Next(0, db.Game.Count());  //random.Next range is [first,last> 
+            Game game = db.Game.Skip(gameID).Take(1).First();
 
             var imgIdList = new List<int>();
 
