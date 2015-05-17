@@ -4,23 +4,28 @@
 
 
 <div class="content">
-    <div class="row">
-        <div class="col-md-4">
-            <img id="the-image" src="" style="max-height:300px; max-width:300px" />
-        </div>
-        <div id="hint-container" class="col-md-5">
-            <div id="hint1-container"></div>
-            <div id="hint2-container"></div>
-            <div id="info-container"></div>
-        </div>
-        <div id="controls-container" class="col-sm-2 btn-group-vertical">
+    <div style="float:left; width:45%">
+        <div style="float:left">
+            <div id="controls-container" class="btn-group-vertical">
                 <button id="nextImgButton" class="btn btn-danger hide">Begin game</button>
                 <button id="hint-button" class="btn btn-success hide">Hint</button>
                 <button id="help-button" class="btn btn-toolbar">How to play</button>
+            </div>
+            <div id="hint-container" style="max-width:300px">
+                <div id="hint1-container"></div>
+                <hr />
+                <div id="hint2-container"></div>
+                <hr />
+                <div id="info-container"></div>
+            </div>
+        </div>        
+        <div style="float:right; width:45%">
+            <img id="the-image" src="" style="max-height:300px; max-width:300px" />
         </div>
+        
     </div>
-    <div class="row">
-        <div id="game-container" class="col-lg-5">
+    <div style="float:right">
+        <div id="game-container">
             <div id="unityPlayer">
                 <div class="missing">
                     <a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">

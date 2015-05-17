@@ -4,15 +4,23 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2 style="color: cornflowerblue">Edit game</h2>
 
+<head>
+    <style>
+        div#centralPart {
+            width: 100%;
+            background: rgba(212, 231, 255, 0.80);
+            color: black;
+        }
+    </style>
+</head>
 
 @using (Html.BeginForm("Edit", "Games", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Game</h4>
+    <div class="form-horizontal" id="centralPart">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IDgame)
