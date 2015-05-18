@@ -15,7 +15,7 @@
         table#leaderboardTable{
             width: 100%;
             background: rgba(212, 231, 255, 0.80);
-            text-align: center;
+            /*text-align: center;*/
             color: black;
         }
     </style>
@@ -23,6 +23,9 @@
 
 <table class="table" id="leaderboardTable">
     <tr>
+        <th></th>
+        <th>
+            Position
         <th>
             Score
         </th>
@@ -36,9 +39,16 @@
 
 @{
     var top10 = Model.OrderByDescending(m => m.score).Take(10);
+    var position = 0;
 }
-@foreach (var item in top10) {
+@foreach (var item in top10)
+{
+    position += 1;
     <tr>
+        <td></td>
+        <td>
+            @position.
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.score)
         </td>
@@ -49,9 +59,9 @@
             @Html.DisplayFor(modelItem => item.Game.IDgame)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDboard }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDboard }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDboard })
+            @Html.ActionLink("Edit", "Edit", new { id = item.IDboard }) |
+            @Html.ActionLink("Details", "Details", new { id = item.IDboard }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IDboard })
         </td>
     </tr>
 }
