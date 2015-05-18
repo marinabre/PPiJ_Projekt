@@ -232,6 +232,7 @@ namespace GuessWhere.Controllers
             return Content(img.info);
         }
 
+        [HttpGet]
         public ActionResult GetCoordinates(int? imgID)
         {
             if (imgID == null) { return null; }

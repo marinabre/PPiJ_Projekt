@@ -3,42 +3,46 @@
 }
 
 
-<div class="content">
-    <div style="float:left; width:45%">
-        <div style="float:left">
-            <div id="controls-container" class="btn-group-vertical">
-                <button id="nextImgButton" class="btn btn-danger hide">Begin game</button>
-                <button id="hint-button" class="btn btn-success hide">Hint</button>
-                <button id="help-button" class="btn btn-toolbar">How to play</button>
-            </div>
-            <div id="hint-container" style="max-width:300px">
+<div class="content container text-center">
+    <div class="row">
+        <div class="col-lg-4 text-left">
+            <img id="the-image" src="" style="max-height:300px; max-width:300px" />
+        </div>
+       <div class="col-lg-8">
+            <div id="hint-container">
                 <div id="hint1-container"></div>
                 <hr />
                 <div id="hint2-container"></div>
                 <hr />
                 <div id="info-container"></div>
             </div>
-        </div>        
-        <div style="float:right; width:45%">
-            <img id="the-image" src="" style="max-height:300px; max-width:300px" />
-        </div>
-        
+        </div> 
     </div>
-    <div style="float:right">
-        <div id="game-container">
-            <div id="unityPlayer">
-                <div class="missing">
-                    <a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
-                        <img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
-                    </a>
-                </div>
-                <div class="broken">
-                    <a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now! Restart your browser after install.">
-                        <img alt="Unity Web Player. Install now! Restart your browser after install." src="http://webplayer.unity3d.com/installation/getunityrestart.png" width="193" height="63" />
-                    </a>
+    <div id="unity-row" class="row">
+        <div class="col-lg-6">
+            <div id="game-container">
+                <div id="unityPlayer">
+                    <div class="missing">
+                        <a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now!">
+                            <img alt="Unity Web Player. Install now!" src="http://webplayer.unity3d.com/installation/getunity.png" width="193" height="63" />
+                        </a>
+                    </div>
+                    <div class="broken">
+                        <a href="http://unity3d.com/webplayer/" title="Unity Web Player. Install now! Restart your browser after install.">
+                            <img alt="Unity Web Player. Install now! Restart your browser after install." src="http://webplayer.unity3d.com/installation/getunityrestart.png" width="193" height="63" />
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="col-lg-2">
+            <div id="controls-container" class="btn-group-vertical">
+                <button id="nextImgButton" class="btn btn-danger hide">Begin game</button>
+                <button id="hint-button" class="btn btn-success hide">Hint</button>
+                <button id="help-button" class="btn btn-toolbar">How to play</button>
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
     </div>
 </div>
 
