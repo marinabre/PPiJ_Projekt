@@ -22,6 +22,13 @@ namespace GuessWhere.Controllers
             return View(leaderBoard.ToList());
         }
 
+        // GET: LeaderBoards
+        public ActionResult IndexCommon()
+        {
+            var leaderBoard = db.LeaderBoard.Include(l => l.Game).Include(l => l.User);
+            return View(leaderBoard.ToList());
+        }
+
         // GET: LeaderBoards/Details/5
         public ActionResult Details(int? id)
         {
