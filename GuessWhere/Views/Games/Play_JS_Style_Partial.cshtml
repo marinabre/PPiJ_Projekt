@@ -181,7 +181,7 @@
         if (currentImg > 6)
         {
             $(this).hide();
-            alert("Your score is: " + score);
+            alert("Your score is: " + score.toFixed(3));
             @*window.location.href = "@Url.Action("GameEnd","LeaderBoards", new { id = ViewBag.GameID, gamescore = score })"*@
             window.location.href = '@Url.Action("GameEnd", "LeaderBoards")' + "?id=" + @ViewBag.GameID + "&gamescore=" + score.toFixed(3);
         }

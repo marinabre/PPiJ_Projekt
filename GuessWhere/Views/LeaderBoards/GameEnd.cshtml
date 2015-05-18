@@ -4,12 +4,14 @@
     ViewBag.Title = "Game over :)";
 }
 
-<h2 style="color:cornflowerblue" >Game Over</h2>
+<h2 style="color:cornflowerblue">Game Over</h2>
 
-
-<h3 style= "padding-top:20px; color:lightsteelblue">Your Score is:</h3>
-<h2 style="padding-top:20px; padding-bottom:20px; color:#0026ff;font-size:xx-large">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ViewBag.score</h2>
-@*<div class="text-center" style="padding-top:20px; color:lightsteelblue">@ViewBag.score</div>*@
+<h3 style="padding-top:20px; color:lightsteelblue">Your Score is:</h3>
+<h2 style="padding-top:20px; color:#0026ff;font-size:xx-large">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ViewBag.score</h2>
+@if (ViewBag.error != null)
+{
+    <p style="color:red">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@ViewBag.error</p>
+}
 @using (Html.BeginForm("Create", "LeaderBoards", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -18,13 +20,13 @@
         @Html.HiddenFor(model => model.IDboard)
         @Html.HiddenFor(model => model.IDgame)
         @Html.HiddenFor(model => model.score)
-        @*@Model.score= @ViewBag.score*@
 
         <div class="form-group">
             <label class="control-label col-md-2">Username</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+
             </div>
         </div>
         <div class="form-group">
@@ -34,6 +36,8 @@
         </div>
     </div>
 }
+
+
 <div class="row">
     <div id="controls-container" class="col-sm-3 pull-left">
         <button id="Save Game" class="btn btn-success">Save game!</button>

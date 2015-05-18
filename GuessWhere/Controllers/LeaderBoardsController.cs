@@ -54,8 +54,20 @@ namespace GuessWhere.Controllers
         {
             try
             {
+                //checking if username already exists
                 var user = db.User.AsNoTracking().Where(x => x.username == leaderBoard.username);
                 var us = user.First(x => x.username == leaderBoard.username);
+
+                //checking if username is taken by a registered user
+                var registered = db.RegisteredUser.AsNoTracking().FirstOrDefault(x => x.IDuser == us.IDuser);
+                if (registered != null) 
+                {
+                    return RedirectToAction("GameEnd", new {id = leaderBoard.IDgame, gamescore = leaderBoard.score, first = false });
+                }
+                else
+                {
+                    leaderBoard.IDuser = us.IDuser;
+                }
             }catch
             {
                 db.User.Add(new User { username = leaderBoard.username });
@@ -67,7 +79,7 @@ namespace GuessWhere.Controllers
             {
                 db.LeaderBoard.Add(leaderBoard);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexCommon");
             }
 
             ViewBag.IDgame = new SelectList(db.Game, "IDgame", "IDgame", leaderBoard.IDgame);
@@ -117,9 +129,7 @@ namespace GuessWhere.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            var leaderBoard = db.LeaderBoard.Find(id);
-            
+            LeaderBoard leaderBoard = db.LeaderBoard.Find(id);
             if (leaderBoard == null)
             {
                 return HttpNotFound();
@@ -127,22 +137,22 @@ namespace GuessWhere.Controllers
             return View(leaderBoard);
         }
 
-        //5
-        public ActionResult GameEnd(int? id, string gamescore)
+        //
+        public ActionResult GameEnd(int? id, string gamescore, bool first = true)
         {
-            var game = db.Game.Find(id);
-            decimal score;
-            score = decimal.Parse(gamescore, CultureInfo.InvariantCulture);
-            //score = (float) Math.Round((decimal)score, 3); //so we don't have wild scores with 20 digits
 
+            var IDgame = (db.Game.Find(id)).IDgame;
+            var score = decimal.Parse(gamescore, CultureInfo.InvariantCulture);
+            
             ViewBag.score = score;
-            ViewBag.IDgame = game.IDgame;
+            ViewBag.IDgame = IDgame;
 
-            var leaderboard = new LeaderBoard 
-                             { 
-                                 IDgame = game.IDgame, 
-                                 score = score 
-                             }; 
+            if (!first) //in case the user is trying to use a username taken by a registered user
+            {
+                ViewBag.error = "That username is protected!";
+            }
+
+            var leaderboard = new LeaderBoard { IDgame = IDgame, score = score }; 
 
             return View(leaderboard);
         }

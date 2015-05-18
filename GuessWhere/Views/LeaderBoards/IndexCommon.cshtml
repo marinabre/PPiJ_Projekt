@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GuessWhere.Models.LeaderBoard>
+
+@{
+    ViewBag.Title = "Leaderboard top 10";
+}
+
+<h2 style="color: cornflowerblue">Leaderboard</h2>
+
+<head>
+    <style>
+        table#leaderboardTable {
+            width: 100%;
+            background: rgba(212, 231, 255, 0.80);
+            text-align: center;
+            color: black;
+        }
+    </style>
+</head>
+
+<table class="table" id="leaderboardTable">
+    <tr>
+        <th>Position</th>
+        <th>
+            Score
+        </th>
+        <th>
+            Username
+        </th>
+        <th>
+            Game played
+        </th>
+    </tr>
+
+    @{
+        var top10 = Model.OrderByDescending(m => m.score).Take(10);
+        var position = 1;
+    }
+    @foreach (var item in top10)
+    {
+        <tr>
+            <td>@position.</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Game.IDgame)
+            </td>
+        </tr>
+        @{position += 1;}
+    }
+
+</table>
