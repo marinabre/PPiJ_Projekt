@@ -11,7 +11,7 @@
 @if (ViewBag.error != null)
 {
     <p style="color:red">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@ViewBag.error</p>
-}
+} 
 @using (Html.BeginForm("Create", "LeaderBoards", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
@@ -38,18 +38,9 @@
 }
 
 <div>
-    <button id="Play another" class="btn btn-danger" href="~/Games/Play">Play another</button>
+    @Html.ActionLink("Play another!", "Play", "Games", null, new { @class = "btn btn-danger" })
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
-
-@*<div class="row">
-    <div id="controls-container" class="col-sm-3 pull-left">
-        <button id="Save Game" class="btn btn-success">Save game!</button>
-       
-    </div>
-</div>*@
-

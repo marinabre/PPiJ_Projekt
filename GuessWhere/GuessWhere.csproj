@@ -272,8 +272,6 @@
       <LastGenOutput>bazapodataka.cs</LastGenOutput>
     </Content>
     <Content Include="Content\Web player build.unity3d" />
-    <Content Include="ClassDiagram1.cd" />
-    <Content Include="ClassDiagram2.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Icon.png" />
     <Content Include="Scripts\bootstrap.js" />
