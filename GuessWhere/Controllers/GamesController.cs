@@ -30,9 +30,12 @@ namespace GuessWhere.Controllers
 
         public ActionResult Play()
         {
-            Random rnd = new Random();
-            int skip = rnd.Next(0, db.Game.Count());  //random.Next range is [first,last> 
-            Game game = db.Game.OrderBy(x => x.IDgame).Skip(skip).Take(1).First();
+            var rnd = new Random();
+            var skip = rnd.Next(0, db.Game.Count());  //random.Next range is [first,last> 
+            var game = db.Game.OrderBy(x => x.IDgame)
+                               .Skip(skip)
+                               .Take(1)
+                               .First();
 
             var imgIdList = new List<int>();
 
@@ -43,9 +46,9 @@ namespace GuessWhere.Controllers
             imgIdList.Add(game.Image4.IDimage);
             imgIdList.Add(game.Image5.IDimage);
             imgIdList.Add(game.Image6.IDimage);
-           // imgIdList.Add(game.IDgame); have to find a way where we can get the game id in it too
 
             ViewBag.GameID = game.IDgame;
+            
             return View(imgIdList);
         }
 
