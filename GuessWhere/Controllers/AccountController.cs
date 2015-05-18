@@ -164,18 +164,43 @@ namespace GuessWhere.Controllers
                 if (result.Succeeded)
                 {
                     context = new Guess_WhereEntities1();
+                    User u = new User();
+                    bool exist = false;
 
-                    context.User.Add(new User
+                    foreach (var korisnik in context.User)
                     {
-                        username = model.Username
-                    });
+                        if (korisnik.username == model.Username)
+                        {
+                            exist = true;
+                            u.IDuser = korisnik.IDuser;
+                            break;
+                        } 
+                    }
 
-                    context.RegisteredUser.Add(new RegisteredUser
+                    if (!exist)
                     {
-                        email = model.Email,
-                        password = model.Password.GetHashCode().ToString(),
-                        avatar = model.Avatar
-                    });
+                        context.User.Add(new User
+                        {
+                            username = model.Username
+                        });
+
+                        context.RegisteredUser.Add(new RegisteredUser
+                        {
+                            email = model.Email,
+                            password = model.Password.GetHashCode().ToString(),
+                            avatar = model.Avatar
+                        });
+                    }
+                    else
+                    {
+                        context.RegisteredUser.Add(new RegisteredUser
+                        {
+                            email = model.Email,
+                            password = model.Password.GetHashCode().ToString(),
+                            avatar = model.Avatar,
+                            IDuser = u.IDuser
+                        });
+                    }                   
 
                     context.SaveChanges();
 

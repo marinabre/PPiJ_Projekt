@@ -210,7 +210,8 @@
         var text = "Controls needed to play the game:\n-rotating the Earth horizontally" +
                    ": 'A' and 'D' or the left and right arrow keys\n-rotating the Earth ver" +
                    "tically : 'W' and 'S' or the up and down arrow keys\n-pinning the location : 'Q'";
-        alert(text);
+        var url = '@Url.Action("Index", "Help")';
+        var win = window.open(url, '_blank');
     });
 
     function GetCoords(imgID)
