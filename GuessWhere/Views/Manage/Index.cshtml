@@ -7,8 +7,6 @@
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 
-
-
 <div>
     <h4 style="color: ButtonShadow">Change your account settings</h4>
     <hr align="left" width="42%" />
@@ -97,7 +95,7 @@
         </dd>
         <dt style="color: ButtonShadow">Avatar:</dt>
         <dd style="color: ButtonShadow">
-            [ @Html.ActionLink("Manage", "ManageLogins") ]
+            [ @Html.ActionLink("Manage avatar", "Index", "Avatar") ]
         </dd>
         <dd>
             <img id="the-image" src="" style="max-height:250px; max-width:300px; border-radius:10px" />
