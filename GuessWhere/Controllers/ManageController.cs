@@ -63,10 +63,15 @@ namespace GuessWhere.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
-
+            
+            context = new Guess_WhereEntities1();
+            
             var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+            var identifikator = context.User.Where(x => x.username == userUserName).First();
             var model = new IndexViewModel
             {
+                Avatar = context.RegisteredUser.Where(x => x.IDuser == identifikator.IDuser).SingleOrDefault().avatar,
                 //Avatar = context.RegisteredUser.Find(userId).avatar, //how to get the avatar of the current user?
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
@@ -75,6 +80,15 @@ namespace GuessWhere.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
             return View(model);
+        }
+
+        public void Show(byte[] avatar)
+        {
+            Response.Buffer = true;
+            Response.Clear();
+            Response.ContentType = "image";
+            Response.BinaryWrite(avatar);
+            Response.End();
         }
 
         //
@@ -400,15 +414,6 @@ namespace GuessWhere.Controllers
             RemoveLoginSuccess,
             RemovePhoneSuccess,
             Error
-        }
-
-        public void Show(byte[] avatar)
-        {
-            Response.Buffer = true;
-            Response.Clear();
-            Response.ContentType = "image";
-            Response.BinaryWrite(avatar);
-            Response.End();
         }
 
         #endregion
