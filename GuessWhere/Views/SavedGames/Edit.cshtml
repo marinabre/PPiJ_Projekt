@@ -1,4 +1,9 @@
-﻿@model GuessWhere.Models.SavedGames
+﻿
+<script>
+
+    window.location.href = '@Url.Action("Index", "SavedGames",ViewBag.id);
+    </script>
+@*@model GuessWhere.Models.SavedGames
 
 @{
     ViewBag.Title = "Edit";
@@ -58,4 +63,4 @@
 
 <div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@

@@ -5,6 +5,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Web.Mvc;
 using GuessWhere.Models;
 
@@ -22,10 +25,22 @@ namespace GuessWhere.Controllers
         //}
 
         //player wanting to see all his saved games
-        public ActionResult Index(int? id)
+        public ActionResult Index()
         {
-            var savedGames = db.SavedGames.Where(s => s.IDuser == id);
-            return View(savedGames.ToList());
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+            try
+            {
+                var id = (db.User.Where(x => x.username == userUserName).First()).IDuser;
+
+
+                var savedGames = db.SavedGames.Where(s => s.IDuser == id).Include(s => s.Game).Include(s => s.User);
+                return View(savedGames.ToList());
+            }
+            catch
+            { 
+                return RedirectToAction("Play", "Games");
+            }
         }
 
         // GET: SavedGames/Details/5
@@ -44,45 +59,45 @@ namespace GuessWhere.Controllers
         }
 
         // GET: SavedGames/Create
-        public ActionResult CreateReg(int idgame, int iduser, decimal score)
+        public ActionResult Create(int idgame, int iduser, decimal score)
         {
             //if a user wants to save a game he already played
-            try
-            {
-                var saved = db.SavedGames.AsNoTracking().Where(x => x.IDGame == idgame).Where(x => x.IDuser == iduser);
 
-                return RedirectToAction("Edit", new { id = saved.First().IDSavedGame, score = score });
+            var saved = db.SavedGames.AsNoTracking().FirstOrDefault(x => x.IDGame == idgame);
+            if (saved != null && saved.IDuser == iduser) 
+            { 
+               return RedirectToAction("Edit", new { id = saved.IDSavedGame, score = score });
             }
-            catch
-            {
-                var savedGame = new SavedGames { IDGame = idgame, IDuser = iduser, score = score, datePlayed = DateTime.Today.Date };
-                db.SavedGames.Add(savedGame);
-                db.SaveChanges();
-                return RedirectToAction("Index", iduser);
-            }
+           
+            var savedGame = new SavedGames { IDGame = idgame, IDuser = iduser, score = score, datePlayed = DateTime.Today.Date };
+            db.SavedGames.Add(savedGame);
+            db.SaveChanges();
+            return RedirectToAction("Index", iduser );
         }
 
 
         // POST: SavedGames/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDSavedGame,IDGame,IDuser,score,datePlayed")] SavedGames savedGames)
-        {
-            if (ModelState.IsValid)
-            {
-                db.SavedGames.Add(savedGames);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "IDSavedGame,IDGame,IDuser,score,datePlayed")] SavedGames savedGames)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.SavedGames.Add(savedGames);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            ViewBag.IDGame = new SelectList(db.Game, "IDgame", "IDgame", savedGames.IDGame);
-            ViewBag.IDuser = new SelectList(db.User, "IDuser", "username", savedGames.IDuser);
-            return View(savedGames);
-        }
+        //    ViewBag.IDGame = new SelectList(db.Game, "IDgame", "IDgame", savedGames.IDGame);
+        //    ViewBag.IDuser = new SelectList(db.User, "IDuser", "username", savedGames.IDuser);
+        //    return View(savedGames);
+        //}
 
         // GET: SavedGames/Edit/5
+
+
         public ActionResult Edit(int? id, decimal score)
         {
             if (id == null)
@@ -91,7 +106,7 @@ namespace GuessWhere.Controllers
             }
 
             SavedGames savedGames = db.SavedGames.Find(id);
-
+            var iduser = savedGames.IDuser;
             if (savedGames == null)
             {
                 return HttpNotFound();
@@ -102,7 +117,8 @@ namespace GuessWhere.Controllers
             db.Entry(savedGames).State = EntityState.Modified;
             db.SaveChanges();
 
-            return RedirectToAction("Index", savedGames.IDuser);
+            ViewBag.id = iduser;
+            return RedirectToAction("Index");
         }
 
         // POST: SavedGames/Edit/5
