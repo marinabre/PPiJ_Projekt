@@ -22,5 +22,16 @@ namespace GuessWhere.Controllers
         {
             return View();
         }
+        public void Show(int id)
+        {
+            byte[] image = context.RegisteredUser.Where(x => x.IDreguser == id).SingleOrDefault().avatar;
+            Response.Buffer = true;
+            Response.Clear();
+            Response.ContentType = "image";
+            Response.BinaryWrite(image);
+            Response.End();
+        }
+
+
     }
 }
