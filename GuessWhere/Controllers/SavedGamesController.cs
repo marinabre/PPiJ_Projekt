@@ -47,16 +47,19 @@ namespace GuessWhere.Controllers
         public ActionResult Create(int idgame, int iduser, decimal score)
         {
             //if a user wants to save a game he already played
-            var saved = db.SavedGames.AsNoTracking().Where(x=>x.IDGame == idgame).Where(x=>x.IDuser == iduser);
+            try
+            {
+                var saved = db.SavedGames.AsNoTracking().Where(x => x.IDGame == idgame).Where(x => x.IDuser == iduser);
 
-            if (saved != null){
                 return RedirectToAction("Edit", new { id = saved.First().IDSavedGame, score = score });
             }
-
-            var savedGame = new SavedGames { IDGame = idgame, IDuser = iduser, score = score, datePlayed = DateTime.Today.Date};
-            db.SavedGames.Add(savedGame);
-            db.SaveChanges();
-            return RedirectToAction("Index", iduser);
+            catch
+            {
+                var savedGame = new SavedGames { IDGame = idgame, IDuser = iduser, score = score, datePlayed = DateTime.Today.Date };
+                db.SavedGames.Add(savedGame);
+                db.SaveChanges();
+                return RedirectToAction("Index", iduser);
+            }
         }
 
 
