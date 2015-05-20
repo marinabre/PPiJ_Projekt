@@ -44,7 +44,7 @@ namespace GuessWhere.Controllers
         }
 
         // GET: SavedGames/Create
-        public ActionResult Create(int idgame, int iduser, decimal score)
+        public ActionResult CreateReg(int idgame, int iduser, decimal score)
         {
             //if a user wants to save a game he already played
             try

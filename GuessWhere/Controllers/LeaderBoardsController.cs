@@ -61,7 +61,7 @@ namespace GuessWhere.Controllers
 
         #region Create
         //user adding himself to the leaderboard
-        public ActionResult Create(int idgame, int iduser, decimal score, string username)
+        public ActionResult CreateReg(int idgame, int iduser, decimal score, string username)
         {
             var leaderboard = new LeaderBoard { IDgame = idgame, IDuser = iduser, score = score, username = username };
             db.LeaderBoard.Add(leaderboard);

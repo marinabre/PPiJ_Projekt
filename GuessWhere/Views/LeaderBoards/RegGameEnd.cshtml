@@ -12,9 +12,15 @@
 <h2 style="padding-top:40px; color:lightsteelblue; padding-bottom:40px ;font-size:xx-large">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ViewBag.score</h2>
 
 <div>
-    @Html.ActionLink("Save this game!", "Create", "SavedGames", new { idgame = ViewBag.IDgame, iduser = ViewBag.userid, score = ViewBag.score}, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Save this game!", "CreateReg", "SavedGames",
+    new { idgame = ViewBag.IDgame, iduser = ViewBag.userid, score = ViewBag.score },
+    new { @class = "btn btn-danger" })
+
     @Html.ActionLink("Play another!", "Play", "Games", null, new { @class = "btn btn-success" })
-    @Html.ActionLink("Add score to leaderboard", "Create", "LeaderBoards", new {idgame = ViewBag.IDgame, iduser = ViewBag.userid, score = ViewBag.score, username = ViewBag.username }, new { @class = "btn btn-info" })
+
+    @Html.ActionLink("Add score to leaderboard", "CreateReg", "LeaderBoards",
+    new { idgame = ViewBag.IDgame, iduser = ViewBag.userid, score = ViewBag.score, username = ViewBag.username },
+    new { @class = "btn btn-info" })
 
 </div>
 
