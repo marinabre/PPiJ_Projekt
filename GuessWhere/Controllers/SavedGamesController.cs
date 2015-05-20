@@ -102,7 +102,7 @@ namespace GuessWhere.Controllers
             db.Entry(savedGames).State = EntityState.Modified;
             db.SaveChanges();
 
-            return View(savedGames);
+            return RedirectToAction("Index", savedGames.IDuser);
         }
 
         // POST: SavedGames/Edit/5
