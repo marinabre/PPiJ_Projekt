@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using GuessWhere.Models;
 using System.IO;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Data.Entity.Infrastructure;
 
 namespace GuessWhere.Controllers
@@ -19,28 +22,57 @@ namespace GuessWhere.Controllers
         // GET: Images
         public ActionResult Index()
         {
-            return View(db.Image.ToList());
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+
+            if(userUserName == "ADMIN"){
+                return View(db.Image.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // GET: Images/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+
+            if(userUserName == "ADMIN")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Image image = db.Image.Find(id);
+                if (image == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(image);
             }
-            Image image = db.Image.Find(id);
-            if (image == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(image);
         }
 
         // GET: Images/Create
         public ActionResult Create()
         {
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+
+            if(userUserName == "ADMIN")
+            {
             return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Images/Create
@@ -80,17 +112,27 @@ namespace GuessWhere.Controllers
         // GET: Images/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+
+            if(userUserName == "ADMIN")
+                {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Image image = db.Image.Find(id);
+                if (image == null)
+                {
+                    return HttpNotFound();
+                }
+                //db.Entry(image).State = EntityState.Detached;
+                return View(image);
             }
-            Image image = db.Image.Find(id);
-            if (image == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            //db.Entry(image).State = EntityState.Detached;
-            return View(image);
         }
 
         // POST: Images/Edit/5
@@ -119,21 +161,32 @@ namespace GuessWhere.Controllers
                 return RedirectToAction("Index");
             }
             return View(image);
+
         }
 
         // GET: Images/Delete/5
         public ActionResult Delete(int? id)
-        {
-            if (id == null)
+        { 
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+
+            if(userUserName == "ADMIN")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Image image = db.Image.Find(id);
+                if (image == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(image);
             }
-            Image image = db.Image.Find(id);
-            if (image == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(image);
         }
 
         // POST: Images/Delete/5

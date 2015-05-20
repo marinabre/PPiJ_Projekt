@@ -12,14 +12,14 @@
     <hr align="left" width="42%" />
     <dl class="dl-horizontal">
         <dt style="color: ButtonShadow">Avatar:</dt>
-        <dd style="color: ButtonShadow">
-            [
+        <dd>
             @if (Model.Avatar != null)
             {
-                <img src="@Url.Action("Show", "Manage", new { avatar = Model.Avatar })" alt="image" />
+                <img id="the-image" src="@Url.Action("Show", "Manage", new { avatar = Model.Avatar })" ; style="max-height:250px; max-width:300px; border-radius:10px" />
             }
-            ]
-
+        </dd>
+        <dd style="color: ButtonShadow">
+            [ @Html.ActionLink("Manage avatar", "Index", "Avatar") ]
         </dd>
 
         <dt style="color: ButtonShadow">Password:</dt>
@@ -93,13 +93,7 @@
                     }
                 }*@
         </dd>
-        <dt style="color: ButtonShadow">Avatar:</dt>
-        <dd style="color: ButtonShadow">
-            [ @Html.ActionLink("Manage avatar", "Index", "Avatar") ]
-        </dd>
-        <dd>
-            <img id="the-image" src="" style="max-height:250px; max-width:300px; border-radius:10px" />
-        </dd>
+
     </dl>
 </div>
 

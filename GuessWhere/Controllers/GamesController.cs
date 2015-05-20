@@ -6,6 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using GuessWhere.Models;
 
 namespace GuessWhere.Controllers
@@ -17,15 +20,25 @@ namespace GuessWhere.Controllers
         // GET: Games
         public ActionResult Index()
         {
-            var game = db.Game.Include(g => g.Image)
-                              .Include(g => g.Image1)
-                              .Include(g => g.Image2)
-                              .Include(g => g.Image3)
-                              .Include(g => g.Image4)
-                              .Include(g => g.Image5)
-                              .Include(g => g.Image6);
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
 
-            return View(game.ToList());
+            if(userUserName == "ADMIN")
+            {
+                var game = db.Game.Include(g => g.Image)
+                                  .Include(g => g.Image1)
+                                  .Include(g => g.Image2)
+                                  .Include(g => g.Image3)
+                                  .Include(g => g.Image4)
+                                  .Include(g => g.Image5)
+                                  .Include(g => g.Image6);
+
+                return View(game.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public ActionResult Play()
@@ -37,15 +50,23 @@ namespace GuessWhere.Controllers
                                .Take(1)
                                .First();
 
-            var imgIdList = new List<int>();
+            var imgIdList = new List<int>
+            { game.Image.IDimage,
+              game.Image1.IDimage,
+              game.Image2.IDimage, 
+              game.Image3.IDimage,
+              game.Image4.IDimage, 
+              game.Image5.IDimage, 
+              game.Image6.IDimage
+            };
 
-            imgIdList.Add(game.Image.IDimage);
-            imgIdList.Add(game.Image1.IDimage);
-            imgIdList.Add(game.Image2.IDimage);
-            imgIdList.Add(game.Image3.IDimage);
-            imgIdList.Add(game.Image4.IDimage);
-            imgIdList.Add(game.Image5.IDimage);
-            imgIdList.Add(game.Image6.IDimage);
+            //imgIdList.Add(game.Image.IDimage);
+            //imgIdList.Add(game.Image1.IDimage);
+            //imgIdList.Add(game.Image2.IDimage);
+            //imgIdList.Add(game.Image3.IDimage);
+            //imgIdList.Add(game.Image4.IDimage);
+            //imgIdList.Add(game.Image5.IDimage);
+            //imgIdList.Add(game.Image6.IDimage);
 
             ViewBag.GameID = game.IDgame;
             
@@ -56,29 +77,49 @@ namespace GuessWhere.Controllers
         // GET: Games/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+
+            if (userUserName == "ADMIN")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Game game = db.Game.Find(id);
+                if (game == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(game);
             }
-            Game game = db.Game.Find(id);
-            if (game == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(game);
         }
 
         // GET: Games/Create
         public ActionResult Create()
         {
-            ViewBag.IDimg1 = new SelectList(db.Image, "IDimage", "name");
-            ViewBag.IDimg2 = new SelectList(db.Image, "IDimage", "name");
-            ViewBag.IDimg3 = new SelectList(db.Image, "IDimage", "name");
-            ViewBag.IDimg4 = new SelectList(db.Image, "IDimage", "name");
-            ViewBag.IDimg5 = new SelectList(db.Image, "IDimage", "name");
-            ViewBag.IDimg6 = new SelectList(db.Image, "IDimage", "name");
-            ViewBag.IDimg7 = new SelectList(db.Image, "IDimage", "name");
-            return View();
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+
+            if (userUserName == "ADMIN")
+            {
+                ViewBag.IDimg1 = new SelectList(db.Image, "IDimage", "name");
+                ViewBag.IDimg2 = new SelectList(db.Image, "IDimage", "name");
+                ViewBag.IDimg3 = new SelectList(db.Image, "IDimage", "name");
+                ViewBag.IDimg4 = new SelectList(db.Image, "IDimage", "name");
+                ViewBag.IDimg5 = new SelectList(db.Image, "IDimage", "name");
+                ViewBag.IDimg6 = new SelectList(db.Image, "IDimage", "name");
+                ViewBag.IDimg7 = new SelectList(db.Image, "IDimage", "name");
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Games/Create
@@ -108,31 +149,41 @@ namespace GuessWhere.Controllers
         // GET: Games/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+
+            if (userUserName == "ADMIN")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Game game = db.Game.Find(id);
+                if (game == null)
+                {
+                    return HttpNotFound();
+                }
+                List<int> selected = new List<int>();
+                ViewBag.IDimg1 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg1, selected);
+                selected.Add(game.IDimg1);
+                ViewBag.IDimg2 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg2, selected);
+                selected.Add(game.IDimg2);
+                ViewBag.IDimg3 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg3, selected);
+                selected.Add(game.IDimg3);
+                ViewBag.IDimg4 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg4, selected);
+                selected.Add(game.IDimg4);
+                ViewBag.IDimg5 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg5, selected);
+                selected.Add(game.IDimg5);
+                ViewBag.IDimg6 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg6, selected);
+                selected.Add(game.IDimg6);
+                ViewBag.IDimg7 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg7, selected);
+                selected.Add(game.IDimg7);
+                return View(game);
             }
-            Game game = db.Game.Find(id);
-            if (game == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            List<int> selected = new List<int>();
-            ViewBag.IDimg1 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg1, selected);
-            selected.Add(game.IDimg1);
-            ViewBag.IDimg2 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg2, selected);
-            selected.Add(game.IDimg2);
-            ViewBag.IDimg3 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg3, selected);
-            selected.Add(game.IDimg3);
-            ViewBag.IDimg4 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg4, selected);
-            selected.Add(game.IDimg4);
-            ViewBag.IDimg5 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg5, selected);
-            selected.Add(game.IDimg5);
-            ViewBag.IDimg6 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg6, selected);
-            selected.Add(game.IDimg6);
-            ViewBag.IDimg7 = new SelectList(db.Image.AsNoTracking(), "IDimage", "name", game.IDimg7, selected);
-            selected.Add(game.IDimg7);
-            return View(game);
         }
 
         // POST: Games/Edit/5
@@ -161,6 +212,11 @@ namespace GuessWhere.Controllers
         // GET: Games/Delete/5
         public ActionResult Delete(int? id)
         {
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+
+            if (userUserName == "ADMIN")
+            {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -171,6 +227,11 @@ namespace GuessWhere.Controllers
                 return HttpNotFound();
             }
             return View(game);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         // POST: Games/Delete/5

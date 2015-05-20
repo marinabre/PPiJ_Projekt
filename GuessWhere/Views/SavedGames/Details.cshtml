@@ -1,0 +1,50 @@
+﻿@model GuessWhere.Models.SavedGames
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SavedGames</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.score)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.score)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.datePlayed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datePlayed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Game.IDgame)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Game.IDgame)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.username)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDSavedGame }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

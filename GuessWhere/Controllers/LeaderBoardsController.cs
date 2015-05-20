@@ -6,6 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Globalization;
 using GuessWhere.Models;
 
@@ -18,8 +21,18 @@ namespace GuessWhere.Controllers
         // GET: LeaderBoards
         public ActionResult Index()
         {
-            var leaderBoard = db.LeaderBoard.Include(l => l.Game).Include(l => l.User);
-            return View(leaderBoard.ToList());
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+
+            if (userUserName == "ADMIN")
+            {
+                var leaderBoard = db.LeaderBoard.Include(l => l.Game).Include(l => l.User);
+                return View(leaderBoard.ToList());
+            }
+            else
+            {
+                return RedirectToAction("IndexCommon");
+            }
         }
 
         // GET: LeaderBoards
@@ -28,6 +41,8 @@ namespace GuessWhere.Controllers
             var leaderBoard = db.LeaderBoard.Include(l => l.Game).Include(l => l.User);
             return View(leaderBoard.ToList());
         }
+
+
 
         // GET: LeaderBoards/Details/5
         public ActionResult Details(int? id)
@@ -44,12 +59,32 @@ namespace GuessWhere.Controllers
             return View(leaderBoard);
         }
 
+        #region Create
+        //user adding himself to the leaderboard
+        public ActionResult Create(int idgame, int iduser, decimal score, string username)
+        {
+            var leaderboard = new LeaderBoard { IDgame = idgame, IDuser = iduser, score = score, username = username };
+            db.LeaderBoard.Add(leaderboard);
+            db.SaveChanges();
+            return RedirectToAction("IndexCommon");
+        }
+
         // GET: LeaderBoards/Create
         public ActionResult Create()
         {
-            ViewBag.IDgame = new SelectList(db.Game, "IDgame", "IDgame");
-            ViewBag.IDuser = new SelectList(db.User, "IDuser", "username");
-            return View();
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+
+            if (userUserName == "ADMIN")
+            {
+                ViewBag.IDgame = new SelectList(db.Game, "IDgame", "IDgame");
+                ViewBag.IDuser = new SelectList(db.User, "IDuser", "username");
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("IndexCommon");
+            }
         }
 
         // POST: LeaderBoards/Create
@@ -94,21 +129,34 @@ namespace GuessWhere.Controllers
             return View(leaderBoard);
         }
 
+        #endregion 
+
+        #region Edit
         // GET: LeaderBoards/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+
+            if (userUserName == "ADMIN")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                LeaderBoard leaderBoard = db.LeaderBoard.Find(id);
+                if (leaderBoard == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.IDgame = new SelectList(db.Game, "IDgame", "IDgame", leaderBoard.IDgame);
+                ViewBag.IDuser = new SelectList(db.User, "IDuser", "username", leaderBoard.IDuser);
+                return View(leaderBoard);
             }
-            LeaderBoard leaderBoard = db.LeaderBoard.Find(id);
-            if (leaderBoard == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            ViewBag.IDgame = new SelectList(db.Game, "IDgame", "IDgame", leaderBoard.IDgame);
-            ViewBag.IDuser = new SelectList(db.User, "IDuser", "username", leaderBoard.IDuser);
-            return View(leaderBoard);
         }
 
         // POST: LeaderBoards/Edit/5
@@ -129,42 +177,33 @@ namespace GuessWhere.Controllers
             return View(leaderBoard);
         }
 
+        #endregion 
+
+        #region Delete
         // GET: LeaderBoards/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+
+            if (userUserName == "ADMIN")
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                LeaderBoard leaderBoard = db.LeaderBoard.Find(id);
+                if (leaderBoard == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(leaderBoard);
             }
-            LeaderBoard leaderBoard = db.LeaderBoard.Find(id);
-            if (leaderBoard == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("IndexCommon");
             }
-            return View(leaderBoard);
         }
-
-        //
-        public ActionResult GameEnd(int? id, string gamescore, bool first = true)
-        {
-
-            var IDgame = (db.Game.Find(id)).IDgame;
-            var score = decimal.Parse(gamescore, CultureInfo.InvariantCulture);
-            
-            ViewBag.score = score;
-            ViewBag.IDgame = IDgame;
-
-            if (!first) //in case the user is trying to use a username taken by a registered user
-            {
-                ViewBag.error = "That username is protected!";
-            }
-
-            var leaderboard = new LeaderBoard { IDgame = IDgame, score = score }; 
-
-            return View(leaderboard);
-        }
-
-
 
         // POST: LeaderBoards/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -176,6 +215,48 @@ namespace GuessWhere.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        #endregion
+
+        //usual game end view
+        public ActionResult GameEnd(int? id, string gamescore, bool first = true)
+        {
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+            var registeredUsers = db.RegisteredUser;
+            var identifikator = db.User.Where(x => x.username == userUserName).First();
+
+            var IDgame = (db.Game.Find(id)).IDgame;
+            var score = decimal.Parse(gamescore, CultureInfo.InvariantCulture);
+
+            if (registeredUsers.FirstOrDefault(x => x.IDuser == identifikator.IDuser) != null)
+            {
+                return RedirectToAction("RegGameEnd", new { id = IDgame, gamescore = score, username = userUserName, userid = identifikator.IDuser });
+            }
+            
+            ViewBag.score = score;
+            ViewBag.IDgame = IDgame;
+
+            if (!first) //in case the user is trying to use a username taken by a registered user
+            {
+                ViewBag.error = "That username is protected!";
+            }
+
+            var leaderboard = new LeaderBoard { IDgame = IDgame, score = score };
+
+            return View(leaderboard);
+        }
+
+        //GameEnd View for registered users
+        public ActionResult RegGameEnd(int id, decimal gamescore, string username, int userid)
+        {
+            ViewBag.score = gamescore;
+            ViewBag.IDgame = id;
+            ViewBag.username = username;
+            ViewBag.userid = userid;
+            var leaderboard = new LeaderBoard { IDgame = id, score = gamescore };
+            return View(leaderboard);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

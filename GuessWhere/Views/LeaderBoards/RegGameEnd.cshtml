@@ -1,0 +1,23 @@
+﻿@model GuessWhere.Models.LeaderBoard
+
+@{
+    ViewBag.Title = "Game over :)";
+}
+
+<h2 style="color:cornflowerblue">Game Over</h2>
+
+<h3 style="padding-top:20px;color:lightskyblue">Great job @ViewBag.username!</h3>
+
+<h3 style="padding-top:20px; color:lightsteelblue">Your Score is:</h3>
+<h2 style="padding-top:20px; color:#0026ff;font-size:xx-large">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ViewBag.score</h2>
+
+<div>
+    @Html.ActionLink("Save this game!", "Create", "SavedGames", new { idgame = ViewBag.id, iduser = ViewBag.userid, score = ViewBag.score}, new { @class = "btn btn-danger" })
+    @Html.ActionLink("Play another!", "Play", "Games", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Add score to leaderboard", "Create", "LeaderBoards", new {idgame = ViewBag.id, iduser = ViewBag.userid, score = ViewBag.score, username = ViewBag.username }, new { @class = "btn btn-toolbar" })
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

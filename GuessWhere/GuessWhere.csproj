@@ -194,6 +194,7 @@
     <Compile Include="Controllers\HelpController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\LeaderBoardsController.cs" />
+    <Compile Include="Controllers\SavedGamesController.cs" />
     <Compile Include="Models\bazapodataka.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -345,6 +346,12 @@
     <Content Include="Views\LeaderBoards\IndexCommon.cshtml" />
     <Content Include="Views\Help\Index.cshtml" />
     <Content Include="Views\Avatar\Index.cshtml" />
+    <Content Include="Views\LeaderBoards\RegGameEnd.cshtml" />
+    <Content Include="Views\SavedGames\Create.cshtml" />
+    <Content Include="Views\SavedGames\Delete.cshtml" />
+    <Content Include="Views\SavedGames\Details.cshtml" />
+    <Content Include="Views\SavedGames\Edit.cshtml" />
+    <Content Include="Views\SavedGames\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
