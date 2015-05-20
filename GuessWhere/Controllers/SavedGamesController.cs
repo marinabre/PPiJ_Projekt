@@ -14,12 +14,12 @@ namespace GuessWhere.Controllers
     {
         private Guess_WhereEntities1 db = new Guess_WhereEntities1();
 
-        // GET: SavedGames
-        public ActionResult Index()
-        {
-            var savedGames = db.SavedGames.Include(s => s.Game).Include(s => s.User);
-            return View(savedGames.ToList());
-        }
+        //// GET: SavedGames
+        //public ActionResult Index()
+        //{
+        //    var savedGames = db.SavedGames.Include(s => s.Game).Include(s => s.User);
+        //    return View(savedGames.ToList());
+        //}
 
         //player wanting to see all his saved games
         public ActionResult Index(int? id)

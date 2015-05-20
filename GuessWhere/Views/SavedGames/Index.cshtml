@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<GuessWhere.Models.SavedGames>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Saved games";
 }
 
-<h2>Index</h2>
+<h2 style="color:lightsteelblue">List of saved Games</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+</p>*@
+<table class="table"style="color:lightsteelblue">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.score)
@@ -29,22 +29,24 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.score)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.datePlayed)
+            @Html.DisplayFor(modelItem => item.User.username)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Game.IDgame)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User.username)
+            @Html.DisplayFor(modelItem => item.score)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.datePlayed)
+        </td>
+
+
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IDSavedGame }) |
             @Html.ActionLink("Details", "Details", new { id=item.IDSavedGame }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.IDSavedGame })
-        </td>
+        </td>*@
     </tr>
 }
 
