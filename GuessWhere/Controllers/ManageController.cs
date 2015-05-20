@@ -69,6 +69,7 @@ namespace GuessWhere.Controllers
             var userId = User.Identity.GetUserId();
             var userUserName = User.Identity.GetUserName();
             var identifikator = context.User.Where(x => x.username == userUserName).First();
+            ViewBag.id = identifikator.IDuser;
             var model = new IndexViewModel
             {
                 Avatar = context.RegisteredUser.Where(x => x.IDuser == identifikator.IDuser).SingleOrDefault().avatar,
