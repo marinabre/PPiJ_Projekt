@@ -11,6 +11,7 @@ namespace GuessWhere.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class SavedGames
     {
@@ -18,6 +19,8 @@ namespace GuessWhere.Models
         public int IDGame { get; set; }
         public int IDuser { get; set; }
         public decimal score { get; set; }
+
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public System.DateTime datePlayed { get; set; }
     
         public virtual Game Game { get; set; }
