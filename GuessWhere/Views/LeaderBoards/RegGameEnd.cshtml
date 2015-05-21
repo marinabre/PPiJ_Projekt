@@ -8,6 +8,9 @@
 
 <h3 style="padding-top:20px;color:lightskyblue">Great job @ViewBag.username!</h3>
 
+<img style="padding-left:20px; padding-top:20px;padding-bottom:20px" src="@Url.Action("Show", "Avatar", new { id = ViewBag.id })" alt="image" />
+
+
 <h3 style="padding-top:20px; color:lightsteelblue">Your Score is:</h3>
 <h2 style="padding-top:40px; color:lightsteelblue; padding-bottom:40px ;font-size:xx-large">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @ViewBag.score</h2>
 

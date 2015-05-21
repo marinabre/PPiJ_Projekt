@@ -35,6 +35,7 @@ namespace GuessWhere.Controllers
 
 
                 var savedGames = db.SavedGames.Where(s => s.IDuser == id).Include(s => s.Game).Include(s => s.User);
+                ViewBag.id = id;
                 return View(savedGames.ToList());
             }
             catch
