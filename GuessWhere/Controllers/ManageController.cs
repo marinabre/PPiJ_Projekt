@@ -13,7 +13,7 @@ namespace GuessWhere.Controllers
     [Authorize]
     public class ManageController : Controller
     {
-        Guess_WhereEntities1 context;
+        Guess_WhereEntities1 context = new Guess_WhereEntities1();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
