@@ -11,14 +11,6 @@
     <h4 style="color: ButtonShadow">Change your account settings</h4>
     <hr align="left" width="42%" />
     <dl class="dl-horizontal">
-        <dt style="color: ButtonShadow">Avatar:</dt>
-        <dd>
-           <img id="the-image" src="@Url.Action("GetAvatar", "Manage", new { id = ViewBag.idUser })" style="max-height:250px; max-width:300px; border-radius:10px" />
-        </dd>
-        <dd style="color: ButtonShadow">
-            [ @Html.ActionLink("Manage avatar", "Index", "Avatar") ]
-        </dd>
-
         <dt style="color: ButtonShadow">Password:</dt>
         <dd style="color: ButtonShadow">
             [
@@ -31,6 +23,13 @@
                 @Html.ActionLink("Create", "SetPassword")
             }
             ]
+        </dd>
+        <dt style="color: ButtonShadow">Avatar:</dt>
+        <dd style="color: ButtonShadow">
+            [ @Html.ActionLink("Manage avatar", "Index", "Avatar") ]
+        </dd>
+        <dd>
+           <img id="the-image" src="@Url.Action("GetAvatar", "Manage", new { id = ViewBag.idUser })" style="max-height:250px; max-width:300px; border-radius:10px" />
         </dd>
 
         @if (ViewBag.username == "ADMIN") { 
