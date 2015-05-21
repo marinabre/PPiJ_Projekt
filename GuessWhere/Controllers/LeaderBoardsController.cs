@@ -230,7 +230,8 @@ namespace GuessWhere.Controllers
 
             if (identifikator !=null && registeredUsers.FirstOrDefault(x => x.IDuser == identifikator.IDuser) != null)
             {
-                return RedirectToAction("RegGameEnd", new { id = IDgame, gamescore = score, username = userUserName, userid = identifikator.IDuser });
+                return RedirectToAction("RegGameEnd", 
+                    new { id = IDgame, gamescore = score, username = userUserName, userid = identifikator.IDuser });
             }
             
             ViewBag.score = score;
