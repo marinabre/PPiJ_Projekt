@@ -6,17 +6,30 @@
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 
-<div>
+@using (Html.BeginForm("Save", "Avatar", null, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
     <h4 style="color: ButtonShadow">Change your avatar</h4>
     <hr align="left" width="42%" />
-    <dl class="dl-horizontal">
-        <dt style="color: ButtonShadow">Click to browse avatar:</dt>
-        <dd>
-            <input type="file" id="Avatar" name="upload" />
-        </dd>
-        <dt style="padding-top: 20px"></dt>
-        <dd style="padding-top: 20px">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </dd>
-    </dl>
-</div>
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <dl class="dl-horizontal">
+            <dt style="color: ButtonShadow">Click to browse avatar:</dt>
+            <dd>
+                <input type="file" id="Avatar" name="upload" />
+            </dd>
+        </dl>
+    </div>
+    <div class="form-group">
+        <dl class="dl-horizontal">
+            <dt style="padding-top: 20px"></dt>
+            <dd style="padding-top: 20px">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </dd>
+        </dl>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
