@@ -80,6 +80,7 @@ namespace GuessWhere.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+
             ViewBag.username = userUserName;
             ViewBag.idUser = identifikator.IDuser;
 
