@@ -9,12 +9,7 @@
 <div>
     <h4 style="color: ButtonShadow">Change your avatar</h4>
     <hr align="left" width="42%" />
-        [
-        @if (Model.Avatar != null)
-        {
-            <img src="@Url.Action("Show", "Avatar", new { id = ViewBag.id })" alt="image" />
-        }
-        ]
+        <img src="@Url.Action("GetAvatar", "Avatar", new { id = ViewBag.id })" alt="image" />
 
     <dl class="dl-horizontal">
         <dt style="color: ButtonShadow">Click to browse avatar:</dt>

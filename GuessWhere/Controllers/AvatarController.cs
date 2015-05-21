@@ -37,6 +37,23 @@ namespace GuessWhere.Controllers
             Response.End();
         }
 
+        [HttpGet]
+        public FileContentResult GetAvatar(int? id)
+        {
+            if (id == null) { return null; }
+
+            var avatar = db.RegisteredUser
+                                .Where(x => x.IDuser == id)
+                                .SingleOrDefault()
+                                .avatar;
+            if (avatar != null)
+            {
+                return new FileContentResult(avatar, "img");
+            }
+
+            return null;
+        }
+
         [HttpPost]
         public ActionResult Save(HttpPostedFileBase upload)
         {
