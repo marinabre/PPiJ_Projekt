@@ -29,7 +29,7 @@ namespace GuessWhere.Controllers
         }
         public void Show(int id)
         {
-            byte[] image = db.RegisteredUser.Where(x => x.IDreguser == id).SingleOrDefault().avatar;
+            byte[] image = db.RegisteredUser.Where(x => x.IDuser == id).SingleOrDefault().avatar;
             Response.Buffer = true;
             Response.Clear();
             Response.ContentType = "image";
