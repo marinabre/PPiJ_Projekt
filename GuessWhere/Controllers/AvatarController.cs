@@ -27,15 +27,6 @@ namespace GuessWhere.Controllers
             ViewBag.id = id;
             return View();
         }
-        public void Show(int id)
-        {
-            byte[] image = db.RegisteredUser.Where(x => x.IDuser == id).SingleOrDefault().avatar;
-            Response.Buffer = true;
-            Response.Clear();
-            Response.ContentType = "image";
-            Response.BinaryWrite(image);
-            Response.End();
-        }
 
         [HttpGet]
         public FileContentResult GetAvatar(int? id)

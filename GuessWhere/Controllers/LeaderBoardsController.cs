@@ -253,7 +253,9 @@ namespace GuessWhere.Controllers
             ViewBag.IDgame = id;
             ViewBag.username = username;
             ViewBag.userid = userid;
+
             var leaderboard = new LeaderBoard { IDgame = id, score = gamescore };
+
             return View(leaderboard);
         }
 

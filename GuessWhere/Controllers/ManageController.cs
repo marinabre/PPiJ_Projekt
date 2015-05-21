@@ -13,7 +13,7 @@ namespace GuessWhere.Controllers
     [Authorize]
     public class ManageController : Controller
     {
-        Guess_WhereEntities1 context = new Guess_WhereEntities1();
+        Guess_WhereEntities1 context;
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -64,6 +64,8 @@ namespace GuessWhere.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
             
+            context = new Guess_WhereEntities1();
+            
             var userId = User.Identity.GetUserId();
             var userUserName = User.Identity.GetUserName();
             var identifikator = context.User.Where(x => x.username == userUserName).First();
@@ -84,15 +86,6 @@ namespace GuessWhere.Controllers
             return View(model);
         }
 
-        public void Show(byte[] avatar)
-        {
-            Response.Buffer = true;
-            Response.Clear();
-            Response.ContentType = "image";
-            Response.BinaryWrite(avatar);
-            Response.End();
-        }
-
         [HttpGet]
         public FileContentResult GetAvatar(int? id)
         {
@@ -102,6 +95,8 @@ namespace GuessWhere.Controllers
                                 .Where(x => x.IDuser == id)
                                 .SingleOrDefault()
                                 .avatar;
+            
+
             if (avatar != null)
             {
                 return new FileContentResult(avatar, "img");
