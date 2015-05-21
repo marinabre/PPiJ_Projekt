@@ -13,7 +13,10 @@
     <dl class="dl-horizontal">
         <dt style="color: ButtonShadow">Avatar:</dt>
         <dd>
-           <img id="the-image" src="@Url.Action("GetAvatar", "Manage", new { id = ViewBag.idUser })" style="max-height:250px; max-width:300px; border-radius:10px" />
+            @if (Model.Avatar != null)
+            {
+                <img id="the-image" src="@Url.Action("GetAvatar", "Manage", new { id = ViewBag.Iser })" style="max-height:250px; max-width:300px; border-radius:10px" />
+            }
         </dd>
         <dd style="color: ButtonShadow">
             [ @Html.ActionLink("Manage avatar", "Index", "Avatar") ]

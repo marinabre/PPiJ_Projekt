@@ -220,26 +220,26 @@ namespace GuessWhere.Controllers
         //usual game end view
         public ActionResult GameEnd(int? id, string gamescore, bool first = true)
         {
-            var userId = User.Identity.GetUserId();
-            var userUserName = User.Identity.GetUserName();
-            var registeredUsers = db.RegisteredUser;
-            var identifikator = db.User.Where(x => x.username == userUserName).First();
-
             var IDgame = (db.Game.Find(id)).IDgame;
             var score = decimal.Parse(gamescore, CultureInfo.InvariantCulture);
 
-            if (registeredUsers.FirstOrDefault(x => x.IDuser == identifikator.IDuser) != null)
+            var userId = User.Identity.GetUserId();
+            var userUserName = User.Identity.GetUserName();
+            var registeredUsers = db.RegisteredUser;
+            var identifikator = db.User.FirstOrDefault(x => x.username == userUserName);
+
+            if (identifikator != null && registeredUsers.FirstOrDefault(x => x.IDuser == identifikator.IDuser) != null)
             {
                 return RedirectToAction("RegGameEnd", new { id = IDgame, gamescore = score, username = userUserName, userid = identifikator.IDuser });
             }
             
-            ViewBag.score = score;
-            ViewBag.IDgame = IDgame;
-
             if (!first) //in case the user is trying to use a username taken by a registered user
             {
-                ViewBag.error = "That username is protected!";
+               ViewBag.error = "That username is protected!";
             }
+
+            ViewBag.score = score;
+            ViewBag.IDgame = IDgame;
 
             var leaderboard = new LeaderBoard { IDgame = IDgame, score = score };
 
