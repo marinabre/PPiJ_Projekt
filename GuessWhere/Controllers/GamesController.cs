@@ -41,14 +41,20 @@ namespace GuessWhere.Controllers
             }
         }
 
-        public ActionResult Play()
+        public ActionResult Play(int? id)
         {
-            var rnd = new Random();
-            var skip = rnd.Next(0, db.Game.Count());  //random.Next range is [first,last> 
-            var game = db.Game.OrderBy(x => x.IDgame)
-                               .Skip(skip)
-                               .Take(1)
-                               .First();
+            //for reg players that want to replay a game
+            var game = db.Game.Find(id);
+
+            if (game == null)
+            {
+                var rnd = new Random();
+                var skip = rnd.Next(0, db.Game.Count());  //random.Next range is [first,last> 
+                game = db.Game.OrderBy(x => x.IDgame)
+                                   .Skip(skip)
+                                   .Take(1)
+                                   .First();
+            }
 
             var imgIdList = new List<int>
             { game.Image.IDimage,
@@ -59,14 +65,6 @@ namespace GuessWhere.Controllers
               game.Image5.IDimage, 
               game.Image6.IDimage
             };
-
-            //imgIdList.Add(game.Image.IDimage);
-            //imgIdList.Add(game.Image1.IDimage);
-            //imgIdList.Add(game.Image2.IDimage);
-            //imgIdList.Add(game.Image3.IDimage);
-            //imgIdList.Add(game.Image4.IDimage);
-            //imgIdList.Add(game.Image5.IDimage);
-            //imgIdList.Add(game.Image6.IDimage);
 
             ViewBag.GameID = game.IDgame;
             

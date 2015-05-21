@@ -352,6 +352,7 @@
     <Content Include="Views\SavedGames\Details.cshtml" />
     <Content Include="Views\SavedGames\Edit.cshtml" />
     <Content Include="Views\SavedGames\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

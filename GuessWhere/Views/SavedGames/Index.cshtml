@@ -36,12 +36,12 @@
             @Html.DisplayFor(modelItem => item.datePlayed.Date)
         </td>
 
-
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDSavedGame }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDSavedGame }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDSavedGame })
-        </td>*@
+        @* only if 5 or more days passed since playing this particular game, you can replay it *@
+        @if(item.datePlayed.AddDays(5) <= DateTime.Today ){
+            <td>
+                @Html.ActionLink("Replay this game!", "Play", "Games", new { id=item.IDGame })
+            </td>
+        }
     </tr>
 }
 
